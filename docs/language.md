@@ -25,11 +25,11 @@ Commands separated by `|` form a **pipeline**; each command receives the data th
 
 A line belongs to the statement above it when any of these holds:
 
-| Rule | Example |
-|---|---|
-| it is **indented** (starts with a space or tab) | `draw bar(monitors)` ⏎ `    with line(students)` |
-| it starts with a **reserved word** (`with`, `against`, `where`, `by`, `and`, `or`, `not`, `in`, `is`, `contains`, `between`) or with `\|` | `avg(income)` ⏎ `where age > 30` |
-| the statement so far is **incomplete**: an open `(`, or a trailing `|`, `,` or `\` | `get avg(income),` ⏎ `count(all) by gender` |
+| Rule                                                                                                                                                                  | Example                                               |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| it is**indented** (starts with a space or tab)                                                                                                                  | `draw bar(monitors)` ⏎ `    with line(students)` |
+| it starts with a**reserved word** (`with`, `against`, `where`, `by`, `and`, `or`, `not`, `in`, `is`, `contains`, `between`) or with `\|` | `avg(income)` ⏎ `where age > 30`                 |
+| the statement so far is**incomplete**: an open `(`, or a trailing `                                                                                           | `, `,`or`\`                                       |
 
 ```
 draw bar(number_computers)
@@ -55,27 +55,27 @@ There is no statement terminator: `;` is not part of the language (the CLI's `ev
 
 ## 2. Tokens
 
-| Token | Form | Examples |
-|---|---|---|
-| name | letter or `_`, then letters, digits, `_`, `-` | `age`, `q1`, `first-name` |
-| quoted name | backticks | `` `How old are you?` ``, `` `where` `` |
-| number | optional `-`, digits, optional decimals | `3`, `-2.5` |
-| string | double or single quotes, `\"` escapes | `"female"`, `"it's"` |
-| operators | `== = != < <= > >=` | |
-| punctuation | `. ( ) [ ] ,` | |
+| Token       | Form                                               | Examples                                |
+| ----------- | -------------------------------------------------- | --------------------------------------- |
+| name        | letter or`_`, then letters, digits, `_`, `-` | `age`, `q1`, `first-name`         |
+| quoted name | backticks                                          | `` `How old are you?` ``, `` `where` `` |
+| number      | optional`-`, digits, optional decimals           | `3`, `-2.5`                         |
+| string      | double or single quotes,`\"` escapes             | `"female"`, `"it's"`                |
+| operators   | `== = != < <= > >=`                              |                                         |
+| punctuation | `. ( ) [ ] ,`                                    |                                         |
 
-Reserved words, only in argument and expression positions: `where by against with on as all and or not in is contains between true false null`. A question with one of those names is written in backticks: `` count(`where`) ``. `strict` and `regex` are option words inside `is(...)` / `contains(...)` and need backticks there too. `draw` and `let` cannot be variable names.
+Reserved words, only in argument and expression positions: `where by against with on as all and or not in is contains between true false null`. A question with one of those names is written in backticks: ``count(`where`)``. `strict` and `regex` are option words inside `is(...)` / `contains(...)` and need backticks there too. `draw` and `let` cannot be variable names.
 
 ## 3. Referring to questions
 
-| Reference | Meaning |
-|---|---|
-| `age` | the question named `age`; falls back to matching `valueName`, then the title (case-insensitive) |
-| `` `How old are you?` `` | any name, including spaces and punctuation |
-| `colors.red` | one choice of a checkbox, tagbox, ranking or radiogroup, as a yes/no column ("was it selected?") |
-| `features.price` | one row of a single-choice matrix, as a category column |
-| `grid.row1.col1` | one cell of a matrix dropdown |
-| `contact.email` | one item of a multiple-text question |
+| Reference                | Meaning                                                                                            |
+| ------------------------ | -------------------------------------------------------------------------------------------------- |
+| `age`                  | the question named`age`; falls back to matching `valueName`, then the title (case-insensitive) |
+| `` `How old are you?` `` | any name, including spaces and punctuation                                                         |
+| `colors.red`           | one choice of a checkbox, tagbox, ranking or radiogroup, as a yes/no column ("was it selected?")   |
+| `features.price`       | one row of a single-choice matrix, as a category column                                            |
+| `grid.row1.col1`       | one cell of a matrix dropdown                                                                      |
+| `contact.email`        | one item of a multiple-text question                                                               |
 
 An unknown name produces `unknown question 'agee'; did you mean 'age'?`.
 
@@ -83,15 +83,15 @@ An unknown name produces `unknown question 'agee'; did you mean 'age'?`.
 
 Every question is given a kind that decides which commands accept it:
 
-| Kind | SurveyJS types | Value in a response |
-|---|---|---|
-| `number` | `rating`, `slider`, `expression`, `text` with `inputType: number` or `range` | number |
-| `date` | `text` with a date input type | string |
-| `category` | `radiogroup`, `dropdown`, `imagepicker` (single), matrix rows, matrix-dropdown cells | one value |
-| `multi` | `checkbox`, `tagbox`, `ranking`, `imagepicker` with `multiSelect` | array of values |
-| `boolean` | `boolean` | `true`/`false` (`valueTrue`/`valueFalse` normalized) |
-| `text` | `text`, `comment`, multiple-text items | string |
-| `object` | `matrix`, `matrixdropdown`, `matrixdynamic`, `paneldynamic`, `multipletext` (the whole question) | object |
+| Kind         | SurveyJS types                                                                                             | Value in a response                                          |
+| ------------ | ---------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| `number`   | `rating`, `slider`, `expression`, `text` with `inputType: number` or `range`                   | number                                                       |
+| `date`     | `text` with a date input type                                                                            | string                                                       |
+| `category` | `radiogroup`, `dropdown`, `imagepicker` (single), matrix rows, matrix-dropdown cells                 | one value                                                    |
+| `multi`    | `checkbox`, `tagbox`, `ranking`, `imagepicker` with `multiSelect`                                | array of values                                              |
+| `boolean`  | `boolean`                                                                                                | `true`/`false` (`valueTrue`/`valueFalse` normalized) |
+| `text`     | `text`, `comment`, multiple-text items                                                                 | string                                                       |
+| `object`   | `matrix`, `matrixdropdown`, `matrixdynamic`, `paneldynamic`, `multipletext` (the whole question) | object                                                       |
 
 `html`, `image`, `file`, `signaturepad` and panels are skipped. `questions()` prints the kind of every question.
 
@@ -112,13 +112,13 @@ Result: `Loaded 20 responses, 8 questions`. A plain `load` sets the default data
 
 ### 4.2 Inspecting
 
-| Call | Result |
-|---|---|
-| `questions()` (alias `columns()`) | table: name, SurveyJS type, kind, title, choices. Names shadowed by a variable are flagged. On combined data (§ 6.1) an `in` column shows the source(s) and conflicts are listed. |
-| `sources()` (alias `datasets()`) | every dataset bound to a variable: name, responses, questions, origin (path, URL or `union(...)` / `join(...)`), and which one is the default |
-| `show([n])` (alias `head`) | first `n` responses (default 10) |
-| `sample(n)` | `n` random responses (default 5); `--seed` on the CLI makes it repeatable |
-| `describe([q])` (alias `summary`) | for one question: n, missing, mean/median/min/max/stddev or distinct/top; for all questions: one row each |
+| Call                                  | Result                                                                                                                                                                              |
+| ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `questions()` (alias `columns()`) | table: name, SurveyJS type, kind, title, choices. Names shadowed by a variable are flagged. On combined data (§ 6.1) an`in` column shows the source(s) and conflicts are listed. |
+| `sources()` (alias `datasets()`)  | every dataset bound to a variable: name, responses, questions, origin (path, URL or`union(...)` / `join(...)`), and which one is the default                                    |
+| `show([n])` (alias `head`)        | first`n` responses (default 10)                                                                                                                                                   |
+| `sample(n)`                         | `n` random responses (default 5); `--seed` on the CLI makes it repeatable                                                                                                       |
+| `describe([q])` (alias `summary`) | for one question: n, missing, mean/median/min/max/stddev or distinct/top; for all questions: one row each                                                                           |
 
 ### 4.3 Counting
 
@@ -127,15 +127,15 @@ count(all | q) [where <expr>] [by <q>]
 freq(q)    [where <expr>] [by <q>]
 ```
 
-| Form | Result |
-|---|---|
-| `count(all)` | number of responses (scalar) |
-| `count(q)` for category / multi / boolean / rating | frequency table: value, label, count, percent of respondents who answered; a final `(no answer)` row when some are empty |
-| `count(q)` for number / text | number of non-empty answers (scalar) |
-| `count(q)` for a matrix | rows × columns table of counts |
-| `freq(q)` | always the frequency table, even for numeric questions |
-| `count(all) by q` | responses per group |
-| `count(q) by q2` | cross-tab: one row per `q2` group, one column per choice of `q` |
+| Form                                                 | Result                                                                                                                    |
+| ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `count(all)`                                       | number of responses (scalar)                                                                                              |
+| `count(q)` for category / multi / boolean / rating | frequency table: value, label, count, percent of respondents who answered; a final`(no answer)` row when some are empty |
+| `count(q)` for number / text                       | number of non-empty answers (scalar)                                                                                      |
+| `count(q)` for a matrix                            | rows × columns table of counts                                                                                           |
+| `freq(q)`                                          | always the frequency table, even for numeric questions                                                                    |
+| `count(all) by q`                                  | responses per group                                                                                                       |
+| `count(q) by q2`                                   | cross-tab: one row per`q2` group, one column per choice of `q`                                                        |
 
 Percentages are relative to respondents with a non-empty answer, so multi-select percentages can add up to more than 100.
 
@@ -209,12 +209,12 @@ draw gauge(q)     …
 draw line(q[, bins]) …
 ```
 
-| Chart | Accepts | Shows |
-|---|---|---|
+| Chart                                    | Accepts                                  | Shows                                                                                                  |
+| ---------------------------------------- | ---------------------------------------- | ------------------------------------------------------------------------------------------------------ |
 | `bar`, `vbar`, `pie`, `doughnut` | category, multi, boolean, rating, matrix | counts per choice; a matrix gives stacked bars (one series per column) or, for pies, totals per column |
-| `hist` | number, date | counts per equal-width bin; default bins = min(10, ⌈√n⌉) |
-| `gauge` | number, rating | the average on a half-dial from the minimum to the maximum (rating scale bounds when known) |
-| `line` | number (binned) or choice | the same data as a line |
+| `hist`                                 | number, date                             | counts per equal-width bin; default bins = min(10, ⌈√n⌉)                                            |
+| `gauge`                                | number, rating                           | the average on a half-dial from the minimum to the maximum (rating scale bounds when known)            |
+| `line`                                 | number (binned) or choice                | the same data as a line                                                                                |
 
 `draw` is required in front of a chart and rejected in front of anything else: `draw avg(age)` is an error. The result is a **chart value** holding JSON-safe ApexCharts options plus the plain data (`labels`, `series`) and a few stats.
 
@@ -239,23 +239,23 @@ draw <chart>(<series>, ...[, right]) [with <chart>(<series>, ...), ...] against 
 
 **Series.** Each argument is one series:
 
-| Argument | Meaning |
-|---|---|
-| a numeric question, e.g. `cpus` | its value per group (see the default aggregate below) |
-| `sum(q)`, `avg(q)`, `min(q)`, `max(q)`, `median(q)`, `stddev(q)` | that aggregate of `q` per group; `avg(q, 2)` sets the decimal places |
-| `count(all)` | number of responses per group |
-| `count(q)` | for a choice, boolean or rating question: one series per choice with its count per group (stacked); for a number or text question: non-empty answers per group |
-| a choice or boolean question, e.g. `has_lab` | same as `count(q)`: one stacked series per choice |
+| Argument                                                                     | Meaning                                                                                                                                                        |
+| ---------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| a numeric question, e.g.`cpus`                                             | its value per group (see the default aggregate below)                                                                                                          |
+| `sum(q)`, `avg(q)`, `min(q)`, `max(q)`, `median(q)`, `stddev(q)` | that aggregate of`q` per group; `avg(q, 2)` sets the decimal places                                                                                        |
+| `count(all)`                                                               | number of responses per group                                                                                                                                  |
+| `count(q)`                                                                 | for a choice, boolean or rating question: one series per choice with its count per group (stacked); for a number or text question: non-empty answers per group |
+| a choice or boolean question, e.g.`has_lab`                                | same as`count(q)`: one stacked series per choice                                                                                                             |
 
 **Key.** `against` takes any question except matrices and panels: free text (`school_name`), a choice question (`region`, `month`), a boolean, a number. Groups follow choice order for choice questions and first-seen order otherwise.
 
 **Default aggregate.** When several responses share a key value (two reports for the same school, or a region with many schools), a bare question has to be summarised. The default depends on the question:
 
-| Question | Default | Why |
-|---|---|---|
-| rating, slider | `avg` | it is a scale |
-| other numeric (`text` number, expression) | `sum` | it is a quantity |
-| choice, boolean | counts per choice | a stacked cross-tab |
+| Question                                    | Default           | Why                 |
+| ------------------------------------------- | ----------------- | ------------------- |
+| rating, slider                              | `avg`           | it is a scale       |
+| other numeric (`text` number, expression) | `sum`           | it is a quantity    |
+| choice, boolean                             | counts per choice | a stacked cross-tab |
 
 The legend shows what was applied (`sum(monitors)`), and an explicit aggregate always wins: `bar(avg(monitors))`. When every key value is unique the raw values are plotted and the legend shows the plain name.
 
@@ -339,13 +339,13 @@ merged | get school_name, students, inventory.cpus, tablets by region
 merged | draw bar(inventory.cpus) with line(students, right) against school_name
 ```
 
-| Rule | Default | Opt in |
-|---|---|---|
-| key comparison | exact after trimming whitespace | `loose`: case-insensitive |
-| key kinds | must be the same kind on both sides, and single-valued (no multi-select / matrix) | `labels`: also match a choice's label, so a dropdown value can meet free text |
-| unmatched left rows | kept, with empty right-hand columns; the message counts them | `inner`: drop them |
-| several right rows per key | error (`'Kikuyu Primary' matches 2 rows in inventory`) | `many`: repeat the left row for each match |
-| name clashes | the unqualified name is the left side | the right side is always reachable as `inventory.cpus`; non-clashing right columns also work unqualified |
+| Rule                       | Default                                                                           | Opt in                                                                                                    |
+| -------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| key comparison             | exact after trimming whitespace                                                   | `loose`: case-insensitive                                                                               |
+| key kinds                  | must be the same kind on both sides, and single-valued (no multi-select / matrix) | `labels`: also match a choice's label, so a dropdown value can meet free text                           |
+| unmatched left rows        | kept, with empty right-hand columns; the message counts them                      | `inner`: drop them                                                                                      |
+| several right rows per key | error (`'Kikuyu Primary' matches 2 rows in inventory`)                          | `many`: repeat the left row for each match                                                              |
+| name clashes               | the unqualified name is the left side                                             | the right side is always reachable as`inventory.cpus`; non-clashing right columns also work unqualified |
 
 **`rename`** changes question names in the piped-in data; sub-fields (`f.price`) follow. Useful before a union when the same question has different names:
 
@@ -362,13 +362,13 @@ let waves = union(baseline, endline2)
 
 Writes the value piped into it. Format by extension:
 
-| Value | `.json` | `.csv` |
-|---|---|---|
-| chart | the spec (`data`, `layout`, `apex`) | error |
-| table | `{columns, rows}` | comma-separated with a header |
-| rows | the rows | one line per response |
-| dataset (after `filter`) | the rows | — |
-| scalar / message | the value object | error |
+| Value                     | `.json`                                 | `.csv`                      |
+| ------------------------- | ----------------------------------------- | ----------------------------- |
+| chart                     | the spec (`data`, `layout`, `apex`) | error                         |
+| table                     | `{columns, rows}`                       | comma-separated with a header |
+| rows                      | the rows                                  | one line per response         |
+| dataset (after`filter`) | the rows                                  | —                            |
+| scalar / message          | the value object                          | error                         |
 
 In the browser nothing is written; the result carries the text so the page can offer a download.
 
@@ -388,45 +388,71 @@ Allowed on `count` and the aggregates. Groups by a category, boolean, rating or 
 
 ## 8. Expressions
 
-Used by `filter` and `where`.
+Used by `filter` and `where`. An expression is a boolean test applied to each response. It is built from comparisons joined with `and`, `or` and `not`.
 
-```
-expr        := or
-or          := and { "or" and }
-and         := not { "and" not }
-not         := "not" not | comparison
-comparison  := primary [ op primary ]
-             | primary "between" "(" primary "," primary ")"
-             | primary ("is" | "contains") [ "not" ] ( primary | "(" item { "," item } ")" )
-op          := == | = | != | < | <= | > | >= | in
-item        := primary | "strict" | "regex"
-primary     := ref | number | string | true | false | null | ( expr ) | [ primary, … ]
-```
+**Comparisons** — each takes a value on the left (usually a question reference):
+
+| Form                                                        | Example                                                                                                                                                 |
+| ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `value` on its own                                        | `subscribed` — truthiness test                                                                                                                       |
+| `value op value` with `op` one of `== = != < <= > >=` | `age >= 18`                                                                                                                                           |
+| `value in [v1, v2, …]`                                   | `satisfaction in [4, 5]`                                                                                                                              |
+| `value between(lo, hi)`                                   | `age between(25, 40)`                                                                                                                                 |
+| `value between lo and hi`                                 | `age between 25 and 40` — same thing, SQL spelling                                                                                                   |
+| `value is v` / `value is not v`                         | `gender is "female"`                                                                                                                                  |
+| `value contains v` / `value contains not v`             | `comment contains "slow"`                                                                                                                             |
+| `value is(v1, v2, …)` / `value contains(v1, v2, …)`   | `region is("dodoma", "arusha")` — any of the values; `not` goes before the parenthesis (`is not(…)`), the options `strict` / `regex` inside |
+
+**Values** — what can appear on either side of a comparison:
+
+| Value                                 | Example                                                     |
+| ------------------------------------- | ----------------------------------------------------------- |
+| question reference, optionally dotted | `age`, `f.price`, `` `How old are you?` `` (see §2–3) |
+| number                                | `30`, `-2.5`                                            |
+| string                                | `"female"`, `"it's"`, `'say \"hi\"'`                  |
+| `true`, `false`, `null`         | `subscribed == true`                                      |
+| parenthesised expression              | `(age > 30 or income > 1000)`                             |
+| variable (§9)                        | `age > cutoff`                                            |
+
+Lists `[…]` are only used after `in`.
+
+**Combining** — loosest to tightest binding: `or`, `and`, `not`, then a comparison.
+
+| Form        | Meaning                      |
+| ----------- | ---------------------------- |
+| `a and b` | both hold                    |
+| `a or b`  | either holds                 |
+| `not a`   | `a` does not hold          |
+| `( … )`  | group to override precedence |
+
+So `not a or b and c` reads as `(not a) or (b and c)`; parenthesise to change it. Comparisons do not chain: `a < b < c` is an error.
+
+The left-hand side of a comparison is normally a question reference and the right-hand side a literal or a variable (§9), but both sides accept any `value`. Lists appear only after `in`.
 
 ### Comparisons
 
-| Operator | Behaviour |
-|---|---|
-| `is v` | the friendly equality: numbers compare numerically, strings compare **case-insensitively**, booleans exactly. `gender is "Female"` matches `female`. |
-| `is not v` | the negation |
-| `is(v1, v2, …)` | matches any of the values: `gender is("male", "other")` |
-| `between(a, b)` | inclusive range: `age between(25, 40)` is `age >= 25 and age <= 40`. Bounds may be variables. |
-| `contains v` | string: substring, case-insensitive; multi-select: one of the selected choices equals `v` |
-| `contains(v1, v2, …)` | any of the values |
-| `in [v1, v2]` | exact membership (same rules as `==`) |
-| `==`, `=`, `!=` | exact equality: numeric when both sides are numeric, else case-sensitive string comparison. `1 == "1"` is true, `"Female" == "female"` is false. |
-| `<`, `<=`, `>`, `>=` | numeric when both sides are numeric, otherwise lexicographic |
-| `and`, `or`, `not` | boolean logic with short-circuit; `and` binds tighter than `or`; parentheses group |
-| bare reference | truthy when the answer is a non-empty value, a true boolean, or a non-zero number |
+| Operator                     | Behaviour                                                                                                                                                     |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `is v`                     | the friendly equality: numbers compare numerically, strings compare**case-insensitively**, booleans exactly. `gender is "Female"` matches `female`. |
+| `is not v`                 | the negation                                                                                                                                                  |
+| `is(v1, v2, …)`           | matches any of the values:`gender is("male", "other")`                                                                                                      |
+| `between(a, b)`            | inclusive range:`age between(25, 40)` is `age >= 25 and age <= 40`. Bounds may be variables.                                                              |
+| `contains v`               | string: substring, case-insensitive; multi-select: one of the selected choices equals`v`                                                                    |
+| `contains(v1, v2, …)`     | any of the values                                                                                                                                             |
+| `in [v1, v2]`              | exact membership (same rules as`==`)                                                                                                                        |
+| `==`, `=`, `!=`        | exact equality: numeric when both sides are numeric, else case-sensitive string comparison.`1 == "1"` is true, `"Female" == "female"` is false.           |
+| `<`, `<=`, `>`, `>=` | numeric when both sides are numeric, otherwise lexicographic                                                                                                  |
+| `and`, `or`, `not`     | boolean logic with short-circuit;`and` binds tighter than `or`; parentheses group                                                                         |
+| bare reference               | truthy when the answer is a non-empty value, a true boolean, or a non-zero number                                                                             |
 
 ### Options for `is(...)` and `contains(...)`
 
 Option words go inside the parentheses, in any position:
 
-| Option | Effect |
-|---|---|
-| `strict` | case-sensitive: `gender is("Female", strict)` matches only `Female` |
-| `regex` | each value is a regular expression (case-insensitive unless `strict`): `comment contains("^(love\|great)", regex)`, `region is("^dar", regex)` |
+| Option     | Effect                                                                                                                                             |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `strict` | case-sensitive:`gender is("Female", strict)` matches only `Female`                                                                             |
+| `regex`  | each value is a regular expression (case-insensitive unless`strict`): `comment contains("^(love\|great)", regex)`, `region is("^dar", regex)` |
 
 ```
 region is "dodoma"
@@ -460,8 +486,6 @@ count(all) where satisfaction in [4, 5]
 count(gender) where comment contains("great", "love", "excellent")
 ```
 
-The SQL spelling `age between 25 and 40` is also accepted.
-
 ## 9. Variables
 
 ```
@@ -469,11 +493,11 @@ let <name> = <number | string | true | false>
 let <name> = <pipeline>
 ```
 
-| Bound value | Comes from | How to use it |
-|---|---|---|
-| number / string / boolean | a literal, or a scalar-producing call like `avg(income)` | in expressions, as `sample(n)`, `show(n)`, `draw hist(q, n)`; alone on a line to print it |
-| dataset | a pipeline ending in `filter` or `load` | as the first command: `adults \| avg(income)`, `adults \| draw pie(gender)` |
-| table / rows / chart | `count(gender)`, `sample(5)`, `draw bar(gender)` | alone to print, or `x \| save file` |
+| Bound value               | Comes from                                                | How to use it                                                                                  |
+| ------------------------- | --------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| number / string / boolean | a literal, or a scalar-producing call like`avg(income)` | in expressions, as`sample(n)`, `show(n)`, `draw hist(q, n)`; alone on a line to print it |
+| dataset                   | a pipeline ending in`filter` or `load`                | as the first command:`adults \| avg(income)`, `adults \| draw pie(gender)`                   |
+| table / rows / chart      | `count(gender)`, `sample(5)`, `draw bar(gender)`    | alone to print, or`x \| save file`                                                            |
 
 Rules:
 
@@ -501,14 +525,14 @@ chart | save charts/gender.json
 
 Every line produces one value (or an error):
 
-| Kind | Fields | Printed as |
-|---|---|---|
-| `scalar` | `label`, `value` | `avg(age) = 36.6` |
-| `table` | `label`, `columns`, `rows` | an aligned table |
-| `rows` | `columns`, `rows`, `total` | a table of responses plus `(5 of 20 rows)` |
-| `chart` | `chartType`, `question`, `title`, `spec` (`mode`, `against`, `layout`, `data.labels`, `data.series[].{label, values, type, axis}`, `stats`, `apex`) | its spec (CLI) or a rendered chart (web) |
-| `dataset` | `dataset` | `dataset: 13 rows, 8 questions` |
-| `message` | `text`, optional `saved` | the text |
+| Kind        | Fields                                                                                                                                                                    | Printed as                                  |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+| `scalar`  | `label`, `value`                                                                                                                                                      | `avg(age) = 36.6`                         |
+| `table`   | `label`, `columns`, `rows`                                                                                                                                          | an aligned table                            |
+| `rows`    | `columns`, `rows`, `total`                                                                                                                                          | a table of responses plus`(5 of 20 rows)` |
+| `chart`   | `chartType`, `question`, `title`, `spec` (`mode`, `against`, `layout`, `data.labels`, `data.series[].{label, values, type, axis}`, `stats`, `apex`) | its spec (CLI) or a rendered chart (web)    |
+| `dataset` | `dataset`                                                                                                                                                               | `dataset: 13 rows, 8 questions`           |
+| `message` | `text`, optional `saved`                                                                                                                                              | the text                                    |
 
 Numbers are rounded to 4 decimals for display.
 
@@ -533,26 +557,45 @@ line 14: cannot load 'https://x.test/data': request to … failed with HTTP 404
 
 ## 12. Grammar summary
 
-```
-script      := { statement NEWLINE }         (* a statement continues onto the next line when that line
-                                               is indented, starts with a reserved word or "|", or the
-                                               statement so far has an open "(" or ends with "|", "," or "\" *)
-statement   := "let" NAME "=" ( literal | pipeline ) | pipeline
-pipeline    := command { "|" command }
-command     := ("load" | "save" | "export") word { word }
-             | "filter" expr
-             | "use" ref
-             | "union" "(" ref { "," ref } ")" [ "merge" ref "as" NAME { "," ref "as" NAME } ]
-             | "join" "(" [ ref "," ] ref { "," ("inner" | "many" | "loose" | "labels") } ")" "on" ref [ "=" ref ]
-             | "rename" ref "as" NAME { "," ref "as" NAME }
-             | NAME "(" [ arg { "," arg } ] ")" [ "where" expr ] [ "by" ref ]
-             | "get" arg { [","] arg } [ "where" expr ] [ "by" ref ]
-             | "draw" chartCall [ "with" chartCall { "," chartCall } ] [ "against" ref ] [ "where" expr ]
-             | NAME                                          (a variable)
-chartCall   := NAME "(" [ arg { "," arg } ] { "," "right" } ")"
-arg         := ref | NUMBER | STRING | "all" | NAME "(" [ arg { "," arg } ] ")"
-ref         := (NAME | `QUOTED`) { "." (NAME | `QUOTED` | NUMBER) }
-literal     := NUMBER | STRING | "true" | "false"
-```
+A script is a sequence of statements, one per line (continuation rules in §1). Square brackets mark optional parts; `…` means the previous item may repeat.
+
+**Statements**
+
+| Form | Example |
+|---|---|
+| `let NAME = literal` | `let cutoff = 30` |
+| `let NAME = pipeline` | `let adults = filter age >= 18` |
+| `pipeline` | `filter age > 30 \| avg(income)` |
+
+A pipeline is one or more commands joined with `\|`; each command receives what the previous one produced.
+
+**Commands**
+
+| Command | Form | Example |
+|---|---|---|
+| load | `load <survey> [<responses>]` | `load survey.json responses.json` |
+| save / export | `save <path>` | `draw pie(gender) \| save pie.json` |
+| filter | `filter expr` | `filter age > 30 and subscribed` |
+| use | `use NAME` | `use schools` |
+| union | `union(ref, ref, …) [merge ref as NAME, …]` | `union(baseline, endline) merge age as number` |
+| join | `join([left,] right [, inner \| many \| loose \| labels …]) on ref [= ref]` | `join(inventory, inner) on school_name = school` |
+| rename | `rename ref as NAME [, ref as NAME …]` | `rename Q5 as age, Q7 as region` |
+| value call | `NAME(arg, …) [where expr] [by ref]` | `avg(income) where age > 30 by gender` |
+| get | `get arg, arg, … [where expr] [by ref]` | `get avg(income), count(all) by gender` |
+| draw | `draw chart [with chart, …] [against ref] [where expr]` | `draw bar(a) with line(b, right) against school_name` |
+| print / echo | `print` | `adults \| print` |
+| variable | `NAME` | `adults` |
+
+`with` must directly follow the chart call; the other clauses (`where`, `by`, `against`, `on`, `merge`) may come in any order but each at most once.
+
+**Pieces**
+
+| Piece | Form | Example |
+|---|---|---|
+| chart | `NAME(arg, … [, right])` | `line(staff, right)` |
+| arg | a ref, number, string, `all`, or a nested call `NAME(arg, …)` (one level deep) | `income`, `5`, `"x"`, `all`, `avg(income)` |
+| ref | a name or `` `quoted name` ``, followed by any number of `.part` segments where part is a name, quoted name or number | `age`, `colors.red`, `` `Q 1`.row1.col1 `` |
+| literal | number, string, `true` or `false` | `30`, `"female"`, `true` |
+| expr | see §8 | `age between(25, 40)` |
 
 The parser also accepts the older space-separated form (`avg age`, `pie gender`) so existing scripts keep running; new scripts should use the call form shown throughout this document.
