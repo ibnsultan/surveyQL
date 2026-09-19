@@ -60,6 +60,9 @@ function groupMaxes(series: ChartSeries[], layout: ChartLayout, stacks?: string[
   return new Map([...totals].map(([k, t]) => [k, Math.max(0, ...t)]));
 }
 
+/** Whitespace, in pixels, between the bars of one row when a row holds several groups. */
+const GROUP_GAP = 4;
+
 const HIDDEN_AXIS = { labels: { show: false }, axisTicks: { show: false }, axisBorder: { show: false } };
 
 /** The scale footnote (`1 · very unsatisfied   5 · very satisfied`) as an x-axis title. */
@@ -84,7 +87,8 @@ function base(type: string, layout: ChartLayout, height?: number): Record<string
     legend: { show: layout.legend, position: "top", horizontalAlign: "left", ...LEGEND },
     grid: { show: false, padding: { left: 8, right: 16, top: 4, bottom: 4 } },
     tooltip: { theme: "light", shared: true, intersect: false },
-    states: { hover: { filter: { type: "darken", value: 0.9 } }, active: { filter: { type: "none" } } },
+    // `value` is a blend strength (0–1) in ApexCharts 7: 0.08 darkens the hovered mark by 8%.
+    states: { hover: { filter: { type: "darken", value: 0.08 } }, active: { filter: { type: "none" } } },
   };
 }
 
@@ -192,19 +196,8 @@ export function apexOptions(input: ApexInput): Record<string, unknown> {
     }
     const top = independent ? 100 : Math.max(0, ...maxes.values());
     const groupKeys = [...new Set(series.map((_, i) => groupOf(i, layout, input.stacks)))];
+    const multi = groupKeys.length > 1;
     options.yaxis = { show: true, labels: { style: { fontSize: "12px" } } };
-    if (groupKeys.length > 1) {
-      // Several bars per row (grouped series): ApexCharts cannot place labels on grouped-stacked
-      // tracks, so each bar carries its own background track and its value sits at its end.
-      options.xaxis = { categories: labels, min: 0, max: top > 0 ? top * 1.25 : 1, ...HIDDEN_AXIS, ...noteTitle(layout) };
-      options.dataLabels = { ...(options.dataLabels as object), offsetX: anyStacked ? 0 : 6, textAnchor: anyStacked ? "middle" : "start" };
-      const bar = (options.plotOptions as { bar: Record<string, unknown> }).bar;
-      bar.colors = { backgroundBarColors: [THEME.track], backgroundBarOpacity: 1, backgroundBarRadius: 3 };
-      bar.borderRadius = 3;
-      bar.borderRadiusApplication = "end";
-      bar.dataLabels = { position: anyStacked ? "center" : "top", hideOverflowingLabels: false };
-      return options;
-    }
     apexSeries.forEach((entry, i) => (entry.group = groupOf(i, layout, input.stacks)));
     const tracks = groupKeys.map((g) => {
       const members = series.map((_, i) => i).filter((i) => groupOf(i, layout, input.stacks) === g);
@@ -217,9 +210,18 @@ export function apexOptions(input: ApexInput): Record<string, unknown> {
     });
     const all = [...apexSeries, ...tracks];
     const trackIdx = tracks.map((_, k) => apexSeries.length + k);
-    // Stacked segments are labelled in their centre (no total on the track, which would collide);
-    // a lone series prints its value on the track, right-aligned.
-    const labelled = anyStacked ? series.map((_, i) => i).filter((i) => stackedSeries(i)) : trackIdx;
+    if (multi) {
+      // Several bars per row: ApexCharts packs a row's groups edge to edge, so every point shrinks
+      // its bar (and track) by GROUP_GAP to leave whitespace between them.
+      for (const entry of all) {
+        entry.data = (entry.data as number[]).map((y, j) => ({ x: labels[j], y, barHeightOffset: -GROUP_GAP }));
+      }
+    }
+    // Labels: one bar per row prints its value on the track, right-aligned; several bars per row
+    // print each value at the bar's end (ApexCharts cannot label the track of a grouped stack).
+    // Stacked segments are labelled in their centre, where a total would collide.
+    const labelled = anyStacked ? series.map((_, i) => i).filter((i) => stackedSeries(i)) : multi ? series.map((_, i) => i) : trackIdx;
+    const onTrack = (i: number) => trackIdx.includes(i) || (multi && !stackedSeries(i));
 
     options.series = all;
     (options.chart as Record<string, unknown>).stacked = true;
@@ -231,10 +233,11 @@ export function apexOptions(input: ApexInput): Record<string, unknown> {
       enabledOnSeries: labelled,
       offsetX: anyStacked ? 0 : 4,
       textAnchor: anyStacked ? "middle" : "start",
-      style: { fontSize: "12px", fontWeight: 500, colors: all.map((_, i) => (trackIdx.includes(i) ? THEME.text : "#ffffff")) },
+      style: { fontSize: "12px", fontWeight: 500, colors: all.map((_, i) => (onTrack(i) ? THEME.text : "#ffffff")) },
     };
     (options.plotOptions as { bar: Record<string, unknown> }).bar = {
       ...(options.plotOptions as { bar: Record<string, unknown> }).bar,
+      barHeight: multi ? "72%" : "55%",
       borderRadius: 3,
       borderRadiusApplication: "around",
       borderRadiusWhenStacked: "all",
