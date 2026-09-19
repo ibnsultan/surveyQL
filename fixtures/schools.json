@@ -1,0 +1,42 @@
+{
+  "title": "School ICT Inventory",
+  "pages": [
+    {
+      "name": "page1",
+      "elements": [
+        { "type": "text", "name": "school_name", "title": "School name" },
+        {
+          "type": "dropdown",
+          "name": "region",
+          "title": "Region",
+          "choices": [
+            { "value": "dodoma", "text": "Dodoma" },
+            { "value": "dar", "text": "Dar es Salaam" },
+            { "value": "arusha", "text": "Arusha" }
+          ]
+        },
+        {
+          "type": "dropdown",
+          "name": "month",
+          "title": "Reporting month",
+          "choices": [
+            { "value": "2026-01", "text": "Jan" },
+            { "value": "2026-02", "text": "Feb" },
+            { "value": "2026-03", "text": "Mar" },
+            { "value": "2026-04", "text": "Apr" },
+            { "value": "2026-05", "text": "May" },
+            { "value": "2026-06", "text": "Jun" }
+          ]
+        },
+        { "type": "text", "name": "monitors", "title": "Monitors", "inputType": "number" },
+        { "type": "text", "name": "printers", "title": "Printers", "inputType": "number" },
+        { "type": "text", "name": "cpus", "title": "CPUs", "inputType": "number" },
+        { "type": "text", "name": "routers", "title": "Routers", "inputType": "number" },
+        { "type": "text", "name": "working_computers", "title": "Working computers", "inputType": "number" },
+        { "type": "text", "name": "students", "title": "Students", "inputType": "number" },
+        { "type": "rating", "name": "it_rating", "title": "ICT readiness", "rateMin": 1, "rateMax": 5 },
+        { "type": "boolean", "name": "has_lab", "title": "Has a computer lab?" }
+      ]
+    }
+  ]
+}

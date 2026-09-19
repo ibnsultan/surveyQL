@@ -1,0 +1,22 @@
+[
+  { "age": 25, "gender": "male", "satisfaction": 4, "colors": ["red", "blue"], "subscribed": true, "income": 45000, "features": { "price": "ok", "quality": "good", "support": "good" }, "comment": "Great product" },
+  { "age": 34, "gender": "female", "satisfaction": 5, "colors": ["red"], "subscribed": true, "income": 62000, "features": { "price": "good", "quality": "good", "support": "ok" }, "comment": "Love it" },
+  { "age": 41, "gender": "female", "satisfaction": 3, "colors": ["green", "blue"], "subscribed": false, "income": 71000, "features": { "price": "bad", "quality": "ok", "support": "ok" } },
+  { "age": 29, "gender": "male", "satisfaction": 2, "colors": ["yellow"], "subscribed": false, "income": 38000, "features": { "price": "bad", "quality": "bad", "support": "bad" }, "comment": "Too expensive" },
+  { "age": 52, "gender": "other", "satisfaction": 4, "colors": ["red", "green"], "subscribed": true, "income": 90000, "features": { "price": "ok", "quality": "good", "support": "good" } },
+  { "age": 19, "gender": "female", "satisfaction": 5, "colors": ["blue"], "subscribed": true, "income": 15000, "features": { "price": "good", "quality": "good", "support": "good" }, "comment": "Nice" },
+  { "age": 63, "gender": "male", "satisfaction": 3, "colors": ["red", "green", "blue"], "subscribed": false, "income": 55000, "features": { "price": "ok", "quality": "ok", "support": "bad" } },
+  { "age": 37, "gender": "female", "satisfaction": 4, "colors": [], "subscribed": true, "features": { "price": "ok", "quality": "good", "support": "ok" } },
+  { "age": 45, "gender": "male", "satisfaction": 1, "colors": ["green"], "subscribed": false, "income": 48000, "features": { "price": "bad", "quality": "bad", "support": "ok" }, "comment": "Support was slow" },
+  { "age": 31, "gender": "female", "satisfaction": 4, "colors": ["red", "yellow"], "subscribed": true, "income": 58000, "features": { "price": "good", "quality": "ok", "support": "good" } },
+  { "age": 27, "gender": "male", "satisfaction": 5, "colors": ["blue", "yellow"], "subscribed": true, "income": 41000, "features": { "price": "good", "quality": "good", "support": "good" }, "comment": "Excellent" },
+  { "age": 58, "gender": "female", "satisfaction": 2, "colors": ["red"], "subscribed": false, "income": 67000, "features": { "price": "bad", "quality": "ok", "support": "bad" } },
+  { "age": 22, "gender": "other", "satisfaction": 3, "colors": ["green", "blue"], "subscribed": false, "income": 21000, "features": { "price": "ok", "quality": "ok", "support": "ok" } },
+  { "age": 48, "gender": "male", "satisfaction": 4, "colors": ["red", "blue"], "subscribed": true, "income": 83000, "features": { "price": "ok", "quality": "good", "support": "good" }, "comment": "Solid" },
+  { "age": 35, "gender": "female", "satisfaction": 5, "colors": ["red", "green"], "subscribed": true, "income": 59000, "features": { "price": "good", "quality": "good", "support": "good" }, "comment": "Would recommend" },
+  { "age": 17, "gender": "male", "satisfaction": 3, "colors": ["yellow"], "subscribed": false, "features": { "price": "ok", "quality": "ok", "support": "ok" } },
+  { "age": 40, "gender": "female", "satisfaction": 4, "colors": ["blue"], "subscribed": true, "income": 66000, "features": { "price": "good", "quality": "ok", "support": "good" } },
+  { "age": 33, "gender": "male", "satisfaction": 2, "colors": ["red", "green", "yellow"], "subscribed": false, "income": 44000, "features": { "price": "bad", "quality": "ok", "support": "bad" }, "comment": "Meh" },
+  { "age": 50, "gender": "female", "satisfaction": 4, "colors": ["green"], "subscribed": true, "income": 75000, "features": { "price": "ok", "quality": "good", "support": "ok" } },
+  { "age": 26, "gender": "other", "colors": ["red", "blue"], "subscribed": true, "income": 39000, "features": { "price": "ok", "quality": "ok", "support": "good" }, "comment": "Okay" }
+]

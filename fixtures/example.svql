@@ -1,0 +1,53 @@
+# SurveyQL example script
+load fixtures/survey.json fixtures/responses.json
+
+questions()
+
+avg(age)
+count(satisfaction)
+sum(income) where gender is "female"
+sample(5)
+
+draw bar(satisfaction)
+draw pie(gender)
+draw hist(age)
+
+filter age > 30 | avg(income)
+
+# grouping and ranges
+avg(satisfaction) by gender
+get avg(income), count(all), median(age) by gender
+count(colors)
+avg(income) where age between(25, 40) and gender is "female"
+count(gender) where comment contains("great", "love")
+
+# variables
+let adults = filter age >= 18
+adults | avg(income)
+let n = 3
+sample(n)
+
+# save a chart spec
+draw pie(gender) | save charts/gender.json
+
+# series charts: plot questions against a key question
+let schools = load fixtures/schools.json fixtures/schools-responses.json
+schools | draw bar(monitors, printers, cpus, routers) against school_name
+schools | draw bar(monitors)
+            with line(students, right)
+            against school_name
+schools | draw pie(sum(students)) against region
+schools | draw bar(it_rating, has_lab) against region
+
+# several sources: union stacks rounds of the same survey, join attaches another survey on a key
+let baseline = load fixtures/survey.json fixtures/responses.json
+let endline = load fixtures/survey.json fixtures/responses-endline.json
+let waves = union(baseline, endline)
+waves | count(all) by source
+waves | get avg(satisfaction, 1), avg(income, 0), count(all) by source
+waves | draw bar(avg(satisfaction)) with line(count(all), right) against source
+let inventory = load fixtures/inventory.json fixtures/inventory-responses.json
+let merged = join(schools, inventory) on school_name
+merged | get school_name, students, inventory.cpus, tablets, lab_type where region is "dodoma"
+merged | draw bar(inventory.cpus, tablets) against school_name
+sources()

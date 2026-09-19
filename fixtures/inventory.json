@@ -1,0 +1,51 @@
+{
+ "title": "School Lab Inventory",
+ "pages": [
+  {
+   "name": "page1",
+   "elements": [
+    {
+     "type": "text",
+     "name": "school_name",
+     "title": "School name"
+    },
+    {
+     "type": "dropdown",
+     "name": "lab_type",
+     "title": "Lab type",
+     "choices": [
+      {
+       "value": "desktop",
+       "text": "Desktop lab"
+      },
+      {
+       "value": "laptop",
+       "text": "Laptop trolley"
+      },
+      {
+       "value": "none",
+       "text": "No lab"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "name": "cpus",
+     "title": "CPUs (inventory count)",
+     "inputType": "number"
+    },
+    {
+     "type": "text",
+     "name": "tablets",
+     "title": "Tablets",
+     "inputType": "number"
+    },
+    {
+     "type": "boolean",
+     "name": "internet",
+     "title": "Internet connection?"
+    }
+   ]
+  }
+ ]
+}

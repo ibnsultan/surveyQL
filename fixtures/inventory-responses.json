@@ -1,0 +1,79 @@
+[
+ {
+  "school_name": "Kikuyu Primary",
+  "lab_type": "none",
+  "cpus": 40,
+  "tablets": 25,
+  "internet": false
+ },
+ {
+  "school_name": "Mlimwa Secondary",
+  "lab_type": "none",
+  "cpus": 40,
+  "tablets": 0,
+  "internet": true
+ },
+ {
+  "school_name": "CHAMWINO PRIMARY",
+  "lab_type": "none",
+  "cpus": 40,
+  "tablets": 40,
+  "internet": true
+ },
+ {
+  "school_name": "Msalato Girls",
+  "lab_type": "laptop",
+  "cpus": 8,
+  "tablets": 40,
+  "internet": false
+ },
+ {
+  "school_name": "Kinondoni Primary",
+  "lab_type": "desktop",
+  "cpus": 12,
+  "tablets": 0,
+  "internet": false
+ },
+ {
+  "school_name": "Temeke Secondary",
+  "lab_type": "laptop",
+  "cpus": 12,
+  "tablets": 0,
+  "internet": true
+ },
+ {
+  "school_name": "Ilala Girls",
+  "lab_type": "desktop",
+  "cpus": 8,
+  "tablets": 0,
+  "internet": true
+ },
+ {
+  "school_name": "Ubungo Primary",
+  "lab_type": "none",
+  "cpus": 8,
+  "tablets": 25,
+  "internet": false
+ },
+ {
+  "school_name": "Meru Primary",
+  "lab_type": "desktop",
+  "cpus": 12,
+  "tablets": 40,
+  "internet": true
+ },
+ {
+  "school_name": "Arusha Day",
+  "lab_type": "laptop",
+  "cpus": 20,
+  "tablets": 25,
+  "internet": true
+ },
+ {
+  "school_name": "Nowhere Secondary",
+  "lab_type": "none",
+  "cpus": 0,
+  "tablets": 0,
+  "internet": false
+ }
+]

@@ -1,0 +1,231 @@
+[
+ {
+  "age": 44,
+  "gender": "male",
+  "satisfaction": 5,
+  "colors": [
+   "red",
+   "yellow"
+  ],
+  "subscribed": false,
+  "income": 32000,
+  "features": {
+   "price": "ok",
+   "quality": "good",
+   "support": "bad"
+  },
+  "comment": ""
+ },
+ {
+  "age": 35,
+  "gender": "male",
+  "satisfaction": 3,
+  "colors": [
+   "yellow"
+  ],
+  "subscribed": true,
+  "income": 32000,
+  "features": {
+   "price": "good",
+   "quality": "ok",
+   "support": "bad"
+  },
+  "comment": ""
+ },
+ {
+  "age": 27,
+  "gender": "male",
+  "satisfaction": 5,
+  "colors": [],
+  "subscribed": true,
+  "income": 55000,
+  "features": {
+   "price": "bad",
+   "quality": "bad",
+   "support": "bad"
+  },
+  "comment": ""
+ },
+ {
+  "age": 31,
+  "gender": "female",
+  "satisfaction": 5,
+  "colors": [],
+  "subscribed": true,
+  "income": 63000,
+  "features": {
+   "price": "ok",
+   "quality": "good",
+   "support": "good"
+  },
+  "comment": "Fine"
+ },
+ {
+  "age": 27,
+  "gender": "other",
+  "satisfaction": 5,
+  "colors": [
+   "green",
+   "yellow"
+  ],
+  "subscribed": true,
+  "income": 72000,
+  "features": {
+   "price": "bad",
+   "quality": "good",
+   "support": "bad"
+  },
+  "comment": ""
+ },
+ {
+  "age": 35,
+  "gender": "female",
+  "satisfaction": 5,
+  "colors": [
+   "blue"
+  ],
+  "subscribed": true,
+  "income": 55000,
+  "features": {
+   "price": "ok",
+   "quality": "ok",
+   "support": "bad"
+  },
+  "comment": "Fine"
+ },
+ {
+  "age": 35,
+  "gender": "male",
+  "satisfaction": 5,
+  "colors": [
+   "yellow"
+  ],
+  "subscribed": false,
+  "income": 72000,
+  "features": {
+   "price": "ok",
+   "quality": "ok",
+   "support": "good"
+  },
+  "comment": "Better than before"
+ },
+ {
+  "age": 27,
+  "gender": "other",
+  "satisfaction": 5,
+  "colors": [],
+  "subscribed": false,
+  "income": 41000,
+  "features": {
+   "price": "ok",
+   "quality": "ok",
+   "support": "bad"
+  },
+  "comment": "Better than before"
+ },
+ {
+  "age": 61,
+  "gender": "other",
+  "satisfaction": 4,
+  "colors": [
+   "blue"
+  ],
+  "subscribed": true,
+  "income": 63000,
+  "features": {
+   "price": "ok",
+   "quality": "bad",
+   "support": "bad"
+  },
+  "comment": "Still slow support"
+ },
+ {
+  "age": 55,
+  "gender": "other",
+  "satisfaction": 3,
+  "colors": [],
+  "subscribed": false,
+  "income": 48000,
+  "features": {
+   "price": "good",
+   "quality": "good",
+   "support": "good"
+  },
+  "comment": ""
+ },
+ {
+  "age": 38,
+  "gender": "other",
+  "satisfaction": 5,
+  "colors": [
+   "blue",
+   "red"
+  ],
+  "subscribed": false,
+  "income": 48000,
+  "features": {
+   "price": "bad",
+   "quality": "good",
+   "support": "bad"
+  },
+  "comment": ""
+ },
+ {
+  "age": 22,
+  "gender": "male",
+  "satisfaction": 4,
+  "colors": [],
+  "subscribed": false,
+  "income": 55000,
+  "features": {
+   "price": "ok",
+   "quality": "ok",
+   "support": "bad"
+  },
+  "comment": "Fine"
+ },
+ {
+  "age": 55,
+  "gender": "female",
+  "satisfaction": 5,
+  "colors": [
+   "green"
+  ],
+  "subscribed": false,
+  "income": 90000,
+  "features": {
+   "price": "good",
+   "quality": "ok",
+   "support": "good"
+  },
+  "comment": ""
+ },
+ {
+  "age": 44,
+  "gender": "other",
+  "satisfaction": 5,
+  "colors": [],
+  "subscribed": true,
+  "income": 41000,
+  "features": {
+   "price": "bad",
+   "quality": "bad",
+   "support": "good"
+  },
+  "comment": "Fine"
+ },
+ {
+  "age": 22,
+  "gender": "female",
+  "satisfaction": 5,
+  "colors": [],
+  "subscribed": true,
+  "income": 32000,
+  "features": {
+   "price": "bad",
+   "quality": "ok",
+   "support": "good"
+  },
+  "comment": "Still slow support"
+ }
+]

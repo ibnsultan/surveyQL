@@ -1,0 +1,2780 @@
+[
+  {
+    "line": 2,
+    "source": "load fixtures/survey.json fixtures/responses.json",
+    "value": {
+      "kind": "message",
+      "text": "Loaded 20 responses, 8 questions"
+    }
+  },
+  {
+    "line": 4,
+    "source": "questions()",
+    "value": {
+      "kind": "table",
+      "label": "questions",
+      "columns": [
+        "name",
+        "question",
+        "kind",
+        "title",
+        "choices"
+      ],
+      "rows": [
+        [
+          "age",
+          "text",
+          "number",
+          "How old are you?",
+          ""
+        ],
+        [
+          "gender",
+          "radiogroup",
+          "category",
+          "Gender",
+          "male, female, other"
+        ],
+        [
+          "satisfaction",
+          "rating",
+          "number",
+          "Overall satisfaction",
+          "1, 2, 3, 4, 5"
+        ],
+        [
+          "colors",
+          "checkbox",
+          "multi",
+          "Favourite colours",
+          "red, green, blue, yellow"
+        ],
+        [
+          "subscribed",
+          "boolean",
+          "boolean",
+          "Subscribed to newsletter?",
+          "true, false"
+        ],
+        [
+          "income",
+          "text",
+          "number",
+          "Yearly income",
+          ""
+        ],
+        [
+          "features",
+          "matrix",
+          "object",
+          "Rate our features",
+          "bad, ok, good"
+        ],
+        [
+          "comment",
+          "comment",
+          "text",
+          "Anything else?",
+          ""
+        ]
+      ]
+    }
+  },
+  {
+    "line": 6,
+    "source": "avg(age)",
+    "value": {
+      "kind": "scalar",
+      "label": "avg(age)",
+      "value": 36.6
+    }
+  },
+  {
+    "line": 7,
+    "source": "count(satisfaction)",
+    "value": {
+      "kind": "table",
+      "label": "count(satisfaction)",
+      "columns": [
+        "value",
+        "label",
+        "count",
+        "percent"
+      ],
+      "rows": [
+        [
+          1,
+          "1",
+          1,
+          5.3
+        ],
+        [
+          2,
+          "2",
+          3,
+          15.8
+        ],
+        [
+          3,
+          "3",
+          4,
+          21.1
+        ],
+        [
+          4,
+          "4",
+          7,
+          36.8
+        ],
+        [
+          5,
+          "5",
+          4,
+          21.1
+        ],
+        [
+          null,
+          "(no answer)",
+          1,
+          null
+        ]
+      ]
+    }
+  },
+  {
+    "line": 8,
+    "source": "sum(income) where gender is \"female\"",
+    "value": {
+      "kind": "scalar",
+      "label": "sum(income)",
+      "value": 473000
+    }
+  },
+  {
+    "line": 9,
+    "source": "sample(5)",
+    "value": {
+      "kind": "rows",
+      "columns": [
+        "age",
+        "gender",
+        "satisfaction",
+        "colors",
+        "subscribed",
+        "income",
+        "features",
+        "comment"
+      ],
+      "rows": [
+        {
+          "age": 48,
+          "gender": "male",
+          "satisfaction": 4,
+          "colors": [
+            "red",
+            "blue"
+          ],
+          "subscribed": true,
+          "income": 83000,
+          "features": {
+            "price": "ok",
+            "quality": "good",
+            "support": "good"
+          },
+          "comment": "Solid"
+        },
+        {
+          "age": 25,
+          "gender": "male",
+          "satisfaction": 4,
+          "colors": [
+            "red",
+            "blue"
+          ],
+          "subscribed": true,
+          "income": 45000,
+          "features": {
+            "price": "ok",
+            "quality": "good",
+            "support": "good"
+          },
+          "comment": "Great product"
+        },
+        {
+          "age": 26,
+          "gender": "other",
+          "colors": [
+            "red",
+            "blue"
+          ],
+          "subscribed": true,
+          "income": 39000,
+          "features": {
+            "price": "ok",
+            "quality": "ok",
+            "support": "good"
+          },
+          "comment": "Okay"
+        },
+        {
+          "age": 52,
+          "gender": "other",
+          "satisfaction": 4,
+          "colors": [
+            "red",
+            "green"
+          ],
+          "subscribed": true,
+          "income": 90000,
+          "features": {
+            "price": "ok",
+            "quality": "good",
+            "support": "good"
+          }
+        },
+        {
+          "age": 63,
+          "gender": "male",
+          "satisfaction": 3,
+          "colors": [
+            "red",
+            "green",
+            "blue"
+          ],
+          "subscribed": false,
+          "income": 55000,
+          "features": {
+            "price": "ok",
+            "quality": "ok",
+            "support": "bad"
+          }
+        }
+      ],
+      "total": 20
+    }
+  },
+  {
+    "line": 11,
+    "source": "draw bar(satisfaction)",
+    "value": {
+      "kind": "chart",
+      "chartType": "bar",
+      "question": "satisfaction",
+      "title": "Overall satisfaction",
+      "spec": {
+        "mode": "distribution",
+        "layout": {
+          "title": "Overall satisfaction",
+          "horizontal": true,
+          "legend": false,
+          "note": "1 · very unsatisfied   5 · very satisfied",
+          "scales": "shared"
+        },
+        "data": {
+          "labels": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "series": [
+            {
+              "label": "Responses",
+              "values": [
+                1,
+                3,
+                4,
+                7,
+                4
+              ]
+            }
+          ]
+        },
+        "stats": {
+          "answered": 19,
+          "missing": 1
+        },
+        "apex": {
+          "chart": {
+            "type": "bar",
+            "height": 312,
+            "toolbar": {
+              "show": false
+            },
+            "animations": {
+              "enabled": false
+            },
+            "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
+            "foreColor": "#374151",
+            "background": "#f4f6f8",
+            "stacked": true
+          },
+          "title": {
+            "text": "Overall satisfaction",
+            "align": "left",
+            "style": {
+              "fontSize": "13px",
+              "fontWeight": 600,
+              "color": "#374151"
+            }
+          },
+          "legend": {
+            "show": false
+          },
+          "grid": {
+            "show": false,
+            "padding": {
+              "left": 8,
+              "right": 16,
+              "top": 4,
+              "bottom": 16
+            }
+          },
+          "tooltip": {
+            "theme": "light",
+            "shared": false,
+            "intersect": true,
+            "enabledOnSeries": [
+              0
+            ]
+          },
+          "states": {
+            "hover": {
+              "filter": {
+                "type": "none"
+              }
+            },
+            "active": {
+              "filter": {
+                "type": "none"
+              }
+            }
+          },
+          "series": [
+            {
+              "name": "Responses",
+              "data": [
+                1,
+                3,
+                4,
+                7,
+                4
+              ],
+              "group": "#0"
+            },
+            {
+              "name": "",
+              "data": [
+                6.14,
+                4.14,
+                3.14,
+                0.14,
+                3.14
+              ],
+              "group": "#0",
+              "track": [
+                0
+              ]
+            }
+          ],
+          "colors": [
+            "#2f9e5b",
+            "#e3e7ec"
+          ],
+          "stroke": {
+            "width": 0
+          },
+          "markers": {
+            "size": 0,
+            "strokeWidth": 0
+          },
+          "dataLabels": {
+            "enabled": true,
+            "style": {
+              "fontSize": "12px",
+              "fontWeight": 500,
+              "colors": [
+                "#ffffff",
+                "#374151"
+              ]
+            },
+            "background": {
+              "enabled": false
+            },
+            "dropShadow": {
+              "enabled": false
+            },
+            "enabledOnSeries": [
+              1
+            ],
+            "offsetX": 4,
+            "textAnchor": "start"
+          },
+          "plotOptions": {
+            "bar": {
+              "horizontal": true,
+              "borderRadius": 3,
+              "barHeight": "55%",
+              "columnWidth": "55%",
+              "dataLabels": {
+                "position": "top",
+                "hideOverflowingLabels": false
+              },
+              "borderRadiusApplication": "around",
+              "borderRadiusWhenStacked": "all",
+              "colors": {}
+            }
+          },
+          "yaxis": {
+            "show": true,
+            "labels": {
+              "style": {
+                "fontSize": "12px"
+              }
+            }
+          },
+          "xaxis": {
+            "categories": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ],
+            "min": 0,
+            "max": 8.4,
+            "labels": {
+              "show": false
+            },
+            "axisTicks": {
+              "show": false
+            },
+            "axisBorder": {
+              "show": false
+            },
+            "title": {
+              "text": "1 · very unsatisfied   5 · very satisfied",
+              "offsetY": 4,
+              "style": {
+                "color": "#6b7280",
+                "fontSize": "11px",
+                "fontWeight": 400
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "line": 12,
+    "source": "draw pie(gender)",
+    "value": {
+      "kind": "chart",
+      "chartType": "pie",
+      "question": "gender",
+      "title": "Gender",
+      "spec": {
+        "mode": "distribution",
+        "layout": {
+          "title": "Gender",
+          "horizontal": false,
+          "legend": true,
+          "scales": "shared"
+        },
+        "data": {
+          "labels": [
+            "Male",
+            "Female",
+            "Other"
+          ],
+          "series": [
+            {
+              "label": "Responses",
+              "values": [
+                8,
+                9,
+                3
+              ]
+            }
+          ]
+        },
+        "stats": {
+          "answered": 20,
+          "missing": 0
+        },
+        "apex": {
+          "chart": {
+            "type": "pie",
+            "height": 280,
+            "toolbar": {
+              "show": false
+            },
+            "animations": {
+              "enabled": false
+            },
+            "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
+            "foreColor": "#374151",
+            "background": "#f4f6f8",
+            "stacked": false
+          },
+          "title": {
+            "text": "Gender",
+            "align": "left",
+            "style": {
+              "fontSize": "13px",
+              "fontWeight": 600,
+              "color": "#374151"
+            }
+          },
+          "legend": {
+            "show": true,
+            "position": "right",
+            "fontSize": "12px",
+            "markers": {
+              "shape": "square",
+              "size": 5,
+              "strokeWidth": 0
+            },
+            "itemMargin": {
+              "horizontal": 10
+            }
+          },
+          "grid": {
+            "show": false,
+            "padding": {
+              "left": 8,
+              "right": 16,
+              "top": 4,
+              "bottom": 4
+            }
+          },
+          "tooltip": {
+            "theme": "light",
+            "shared": true,
+            "intersect": false
+          },
+          "states": {
+            "hover": {
+              "filter": {
+                "type": "darken",
+                "value": 0.9
+              }
+            },
+            "active": {
+              "filter": {
+                "type": "none"
+              }
+            }
+          },
+          "series": [
+            8,
+            9,
+            3
+          ],
+          "labels": [
+            "Male",
+            "Female",
+            "Other"
+          ],
+          "colors": [
+            "#2f9e5b",
+            "#7f8a96",
+            "#3b7ddd"
+          ],
+          "stroke": {
+            "width": 2,
+            "colors": [
+              "#f4f6f8"
+            ]
+          },
+          "dataLabels": {
+            "enabled": true,
+            "style": {
+              "fontSize": "12px",
+              "fontWeight": 500
+            },
+            "dropShadow": {
+              "enabled": false
+            }
+          },
+          "plotOptions": {
+            "pie": {
+              "expandOnClick": false,
+              "donut": {
+                "size": "62%"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "line": 13,
+    "source": "draw hist(age)",
+    "value": {
+      "kind": "chart",
+      "chartType": "hist",
+      "question": "age",
+      "title": "How old are you?",
+      "spec": {
+        "mode": "distribution",
+        "layout": {
+          "title": "How old are you?",
+          "legend": false,
+          "scales": "shared"
+        },
+        "data": {
+          "labels": [
+            "17–26.2",
+            "26.2–35.4",
+            "35.4–44.6",
+            "44.6–53.8",
+            "53.8–63"
+          ],
+          "series": [
+            {
+              "label": "Responses",
+              "values": [
+                5,
+                6,
+                3,
+                4,
+                2
+              ]
+            }
+          ]
+        },
+        "stats": {
+          "n": 20,
+          "min": 17,
+          "max": 63,
+          "avg": 36.6,
+          "edges": [
+            17,
+            26.2,
+            35.4,
+            44.599999999999994,
+            53.8,
+            63
+          ]
+        },
+        "apex": {
+          "chart": {
+            "type": "bar",
+            "height": 300,
+            "toolbar": {
+              "show": false
+            },
+            "animations": {
+              "enabled": false
+            },
+            "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
+            "foreColor": "#374151",
+            "background": "#f4f6f8",
+            "stacked": false
+          },
+          "title": {
+            "text": "How old are you?",
+            "align": "left",
+            "style": {
+              "fontSize": "13px",
+              "fontWeight": 600,
+              "color": "#374151"
+            }
+          },
+          "legend": {
+            "show": false,
+            "position": "top",
+            "horizontalAlign": "left",
+            "fontSize": "12px",
+            "markers": {
+              "shape": "square",
+              "size": 5,
+              "strokeWidth": 0
+            },
+            "itemMargin": {
+              "horizontal": 10
+            }
+          },
+          "grid": {
+            "show": false,
+            "padding": {
+              "left": 8,
+              "right": 16,
+              "top": 4,
+              "bottom": 4
+            }
+          },
+          "tooltip": {
+            "theme": "light",
+            "shared": true,
+            "intersect": false
+          },
+          "states": {
+            "hover": {
+              "filter": {
+                "type": "darken",
+                "value": 0.9
+              }
+            },
+            "active": {
+              "filter": {
+                "type": "none"
+              }
+            }
+          },
+          "series": [
+            {
+              "name": "Responses",
+              "data": [
+                5,
+                6,
+                3,
+                4,
+                2
+              ]
+            }
+          ],
+          "colors": [
+            "#2f9e5b"
+          ],
+          "stroke": {
+            "width": [
+              0
+            ],
+            "curve": "straight"
+          },
+          "markers": {
+            "size": 0,
+            "strokeWidth": 0
+          },
+          "dataLabels": {
+            "enabled": true,
+            "style": {
+              "fontSize": "12px",
+              "fontWeight": 500,
+              "colors": [
+                "#374151"
+              ]
+            },
+            "background": {
+              "enabled": false
+            },
+            "dropShadow": {
+              "enabled": false
+            },
+            "offsetY": -18
+          },
+          "plotOptions": {
+            "bar": {
+              "horizontal": false,
+              "borderRadius": 0,
+              "barHeight": "55%",
+              "columnWidth": "92%",
+              "dataLabels": {
+                "position": "top"
+              }
+            }
+          },
+          "xaxis": {
+            "categories": [
+              "17–26.2",
+              "26.2–35.4",
+              "35.4–44.6",
+              "44.6–53.8",
+              "53.8–63"
+            ],
+            "axisTicks": {
+              "show": false
+            },
+            "axisBorder": {
+              "show": true,
+              "color": "#e3e7ec"
+            },
+            "labels": {
+              "style": {
+                "fontSize": "12px"
+              }
+            }
+          },
+          "yaxis": {
+            "show": false,
+            "min": 0,
+            "max": 7.199999999999999
+          }
+        }
+      }
+    }
+  },
+  {
+    "line": 15,
+    "source": "filter age > 30 | avg(income)",
+    "value": {
+      "kind": "scalar",
+      "label": "avg(income)",
+      "value": 64833.3333
+    }
+  },
+  {
+    "line": 18,
+    "source": "avg(satisfaction) by gender",
+    "value": {
+      "kind": "table",
+      "label": "avg(satisfaction) by gender",
+      "columns": [
+        "gender",
+        "avg(satisfaction)",
+        "n"
+      ],
+      "rows": [
+        [
+          "Male",
+          3,
+          8
+        ],
+        [
+          "Female",
+          4,
+          9
+        ],
+        [
+          "Other",
+          3.5,
+          3
+        ]
+      ]
+    }
+  },
+  {
+    "line": 19,
+    "source": "get avg(income), count(all), median(age) by gender",
+    "value": {
+      "kind": "table",
+      "label": "get avg(income), count(all), median(age) by gender",
+      "columns": [
+        "gender",
+        "avg(income)",
+        "count(all)",
+        "median(age)"
+      ],
+      "rows": [
+        [
+          "Male",
+          50571.4286,
+          8,
+          31
+        ],
+        [
+          "Female",
+          59125,
+          9,
+          37
+        ],
+        [
+          "Other",
+          50000,
+          3,
+          26
+        ]
+      ]
+    }
+  },
+  {
+    "line": 20,
+    "source": "count(colors)",
+    "value": {
+      "kind": "table",
+      "label": "count(colors)",
+      "columns": [
+        "value",
+        "label",
+        "count",
+        "percent"
+      ],
+      "rows": [
+        [
+          "red",
+          "Red",
+          10,
+          52.6
+        ],
+        [
+          "green",
+          "Green",
+          8,
+          42.1
+        ],
+        [
+          "blue",
+          "Blue",
+          9,
+          47.4
+        ],
+        [
+          "yellow",
+          "Yellow",
+          5,
+          26.3
+        ],
+        [
+          null,
+          "(no answer)",
+          1,
+          null
+        ]
+      ]
+    }
+  },
+  {
+    "line": 21,
+    "source": "avg(income) where age between(25, 40) and gender is \"female\"",
+    "value": {
+      "kind": "scalar",
+      "label": "avg(income)",
+      "value": 61250
+    }
+  },
+  {
+    "line": 22,
+    "source": "count(gender) where comment contains(\"great\", \"love\")",
+    "value": {
+      "kind": "table",
+      "label": "count(gender)",
+      "columns": [
+        "value",
+        "label",
+        "count",
+        "percent"
+      ],
+      "rows": [
+        [
+          "male",
+          "Male",
+          1,
+          50
+        ],
+        [
+          "female",
+          "Female",
+          1,
+          50
+        ],
+        [
+          "other",
+          "Other",
+          0,
+          0
+        ]
+      ]
+    }
+  },
+  {
+    "line": 25,
+    "source": "let adults = filter age >= 18",
+    "value": {
+      "kind": "message",
+      "text": "adults = dataset (19 rows)"
+    }
+  },
+  {
+    "line": 26,
+    "source": "adults | avg(income)",
+    "value": {
+      "kind": "scalar",
+      "label": "avg(income)",
+      "value": 54277.7778
+    }
+  },
+  {
+    "line": 27,
+    "source": "let n = 3",
+    "value": {
+      "kind": "message",
+      "text": "n = 3"
+    }
+  },
+  {
+    "line": 28,
+    "source": "sample(n)",
+    "value": {
+      "kind": "rows",
+      "columns": [
+        "age",
+        "gender",
+        "satisfaction",
+        "colors",
+        "subscribed",
+        "income",
+        "features",
+        "comment"
+      ],
+      "rows": [
+        {
+          "age": 37,
+          "gender": "female",
+          "satisfaction": 4,
+          "colors": [],
+          "subscribed": true,
+          "features": {
+            "price": "ok",
+            "quality": "good",
+            "support": "ok"
+          }
+        },
+        {
+          "age": 22,
+          "gender": "other",
+          "satisfaction": 3,
+          "colors": [
+            "green",
+            "blue"
+          ],
+          "subscribed": false,
+          "income": 21000,
+          "features": {
+            "price": "ok",
+            "quality": "ok",
+            "support": "ok"
+          }
+        },
+        {
+          "age": 58,
+          "gender": "female",
+          "satisfaction": 2,
+          "colors": [
+            "red"
+          ],
+          "subscribed": false,
+          "income": 67000,
+          "features": {
+            "price": "bad",
+            "quality": "ok",
+            "support": "bad"
+          }
+        }
+      ],
+      "total": 20
+    }
+  },
+  {
+    "line": 31,
+    "source": "draw pie(gender) | save charts/gender.json",
+    "value": {
+      "kind": "message",
+      "text": "Saved charts/gender.json"
+    }
+  },
+  {
+    "line": 34,
+    "source": "let schools = load fixtures/schools.json fixtures/schools-responses.json",
+    "value": {
+      "kind": "message",
+      "text": "schools = dataset (12 rows)"
+    }
+  },
+  {
+    "line": 35,
+    "source": "schools | draw bar(monitors, printers, cpus, routers) against school_name",
+    "value": {
+      "kind": "chart",
+      "chartType": "bar",
+      "question": "monitors,printers,cpus,routers against school_name",
+      "title": "bar(monitors, printers, cpus, routers) against School name",
+      "spec": {
+        "mode": "series",
+        "against": "school_name",
+        "layout": {
+          "title": "bar(monitors, printers, cpus, routers) against School name",
+          "horizontal": true,
+          "stacked": false,
+          "legend": true,
+          "scales": "shared"
+        },
+        "data": {
+          "labels": [
+            "Kikuyu Primary",
+            "Mlimwa Secondary",
+            "Chamwino Primary",
+            "Msalato Girls",
+            "Kinondoni Primary",
+            "Temeke Secondary",
+            "Ilala Girls",
+            "Ubungo Primary",
+            "Meru Primary",
+            "Arusha Day",
+            "Monduli Secondary"
+          ],
+          "series": [
+            {
+              "label": "sum(monitors)",
+              "values": [
+                52,
+                40,
+                8,
+                30,
+                60,
+                45,
+                52,
+                12,
+                18,
+                35,
+                10
+              ],
+              "type": "bar",
+              "axis": "left"
+            },
+            {
+              "label": "sum(printers)",
+              "values": [
+                4,
+                4,
+                1,
+                3,
+                5,
+                3,
+                6,
+                1,
+                2,
+                3,
+                1
+              ],
+              "type": "bar",
+              "axis": "left"
+            },
+            {
+              "label": "sum(cpus)",
+              "values": [
+                48,
+                38,
+                8,
+                30,
+                58,
+                44,
+                50,
+                12,
+                16,
+                34,
+                10
+              ],
+              "type": "bar",
+              "axis": "left"
+            },
+            {
+              "label": "sum(routers)",
+              "values": [
+                2,
+                2,
+                0,
+                2,
+                3,
+                2,
+                4,
+                1,
+                1,
+                2,
+                0
+              ],
+              "type": "bar",
+              "axis": "left"
+            }
+          ]
+        },
+        "apex": {
+          "chart": {
+            "type": "bar",
+            "height": 1202,
+            "toolbar": {
+              "show": false
+            },
+            "animations": {
+              "enabled": false
+            },
+            "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
+            "foreColor": "#374151",
+            "background": "#f4f6f8",
+            "stacked": false
+          },
+          "title": {
+            "text": "bar(monitors, printers, cpus, routers) against School name",
+            "align": "left",
+            "style": {
+              "fontSize": "13px",
+              "fontWeight": 600,
+              "color": "#374151"
+            }
+          },
+          "legend": {
+            "show": true,
+            "position": "top",
+            "horizontalAlign": "left",
+            "fontSize": "12px",
+            "markers": {
+              "shape": "square",
+              "size": 5,
+              "strokeWidth": 0
+            },
+            "itemMargin": {
+              "horizontal": 10
+            }
+          },
+          "grid": {
+            "show": false,
+            "padding": {
+              "left": 8,
+              "right": 16,
+              "top": 4,
+              "bottom": 4
+            }
+          },
+          "tooltip": {
+            "theme": "light",
+            "shared": true,
+            "intersect": false
+          },
+          "states": {
+            "hover": {
+              "filter": {
+                "type": "darken",
+                "value": 0.9
+              }
+            },
+            "active": {
+              "filter": {
+                "type": "none"
+              }
+            }
+          },
+          "series": [
+            {
+              "name": "sum(monitors)",
+              "data": [
+                52,
+                40,
+                8,
+                30,
+                60,
+                45,
+                52,
+                12,
+                18,
+                35,
+                10
+              ]
+            },
+            {
+              "name": "sum(printers)",
+              "data": [
+                4,
+                4,
+                1,
+                3,
+                5,
+                3,
+                6,
+                1,
+                2,
+                3,
+                1
+              ]
+            },
+            {
+              "name": "sum(cpus)",
+              "data": [
+                48,
+                38,
+                8,
+                30,
+                58,
+                44,
+                50,
+                12,
+                16,
+                34,
+                10
+              ]
+            },
+            {
+              "name": "sum(routers)",
+              "data": [
+                2,
+                2,
+                0,
+                2,
+                3,
+                2,
+                4,
+                1,
+                1,
+                2,
+                0
+              ]
+            }
+          ],
+          "colors": [
+            "#2f9e5b",
+            "#7f8a96",
+            "#3b7ddd",
+            "#d99a2b"
+          ],
+          "stroke": {
+            "width": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "curve": "straight"
+          },
+          "markers": {
+            "size": 0,
+            "strokeWidth": 0
+          },
+          "dataLabels": {
+            "enabled": true,
+            "style": {
+              "fontSize": "12px",
+              "fontWeight": 500,
+              "colors": [
+                "#374151",
+                "#374151",
+                "#374151",
+                "#374151"
+              ]
+            },
+            "background": {
+              "enabled": false
+            },
+            "dropShadow": {
+              "enabled": false
+            },
+            "offsetX": 6,
+            "textAnchor": "start"
+          },
+          "plotOptions": {
+            "bar": {
+              "horizontal": true,
+              "borderRadius": 3,
+              "barHeight": "55%",
+              "columnWidth": "55%",
+              "dataLabels": {
+                "position": "top",
+                "hideOverflowingLabels": false
+              },
+              "colors": {
+                "backgroundBarColors": [
+                  "#e3e7ec"
+                ],
+                "backgroundBarOpacity": 1,
+                "backgroundBarRadius": 3
+              },
+              "borderRadiusApplication": "end"
+            }
+          },
+          "yaxis": {
+            "show": true,
+            "labels": {
+              "style": {
+                "fontSize": "12px"
+              }
+            }
+          },
+          "xaxis": {
+            "categories": [
+              "Kikuyu Primary",
+              "Mlimwa Secondary",
+              "Chamwino Primary",
+              "Msalato Girls",
+              "Kinondoni Primary",
+              "Temeke Secondary",
+              "Ilala Girls",
+              "Ubungo Primary",
+              "Meru Primary",
+              "Arusha Day",
+              "Monduli Secondary"
+            ],
+            "min": 0,
+            "max": 75,
+            "labels": {
+              "show": false
+            },
+            "axisTicks": {
+              "show": false
+            },
+            "axisBorder": {
+              "show": false
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "line": 36,
+    "source": "schools | draw bar(monitors) with line(students, right) against school_name",
+    "value": {
+      "kind": "chart",
+      "chartType": "bar",
+      "question": "monitors against school_name",
+      "title": "bar(monitors) with line(students) against School name",
+      "spec": {
+        "mode": "series",
+        "against": "school_name",
+        "layout": {
+          "title": "bar(monitors) with line(students) against School name",
+          "horizontal": false,
+          "stacked": false,
+          "legend": true,
+          "scales": "shared"
+        },
+        "data": {
+          "labels": [
+            "Kikuyu Primary",
+            "Mlimwa Secondary",
+            "Chamwino Primary",
+            "Msalato Girls",
+            "Kinondoni Primary",
+            "Temeke Secondary",
+            "Ilala Girls",
+            "Ubungo Primary",
+            "Meru Primary",
+            "Arusha Day",
+            "Monduli Secondary"
+          ],
+          "series": [
+            {
+              "label": "sum(monitors)",
+              "values": [
+                52,
+                40,
+                8,
+                30,
+                60,
+                45,
+                52,
+                12,
+                18,
+                35,
+                10
+              ],
+              "type": "bar",
+              "axis": "left"
+            },
+            {
+              "label": "sum(students)",
+              "values": [
+                1295,
+                910,
+                420,
+                780,
+                1320,
+                1100,
+                980,
+                560,
+                500,
+                870,
+                450
+              ],
+              "type": "line",
+              "axis": "right"
+            }
+          ]
+        },
+        "apex": {
+          "chart": {
+            "type": "line",
+            "height": 300,
+            "toolbar": {
+              "show": false
+            },
+            "animations": {
+              "enabled": false
+            },
+            "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
+            "foreColor": "#374151",
+            "background": "#f4f6f8",
+            "stacked": false
+          },
+          "title": {
+            "text": "bar(monitors) with line(students) against School name",
+            "align": "left",
+            "style": {
+              "fontSize": "13px",
+              "fontWeight": 600,
+              "color": "#374151"
+            }
+          },
+          "legend": {
+            "show": true,
+            "position": "top",
+            "horizontalAlign": "left",
+            "fontSize": "12px",
+            "markers": {
+              "shape": "square",
+              "size": 5,
+              "strokeWidth": 0
+            },
+            "itemMargin": {
+              "horizontal": 10
+            }
+          },
+          "grid": {
+            "show": true,
+            "padding": {
+              "left": 8,
+              "right": 16,
+              "top": 4,
+              "bottom": 4
+            },
+            "borderColor": "#e3e7ec",
+            "xaxis": {
+              "lines": {
+                "show": false
+              }
+            }
+          },
+          "tooltip": {
+            "theme": "light",
+            "shared": true,
+            "intersect": false
+          },
+          "states": {
+            "hover": {
+              "filter": {
+                "type": "darken",
+                "value": 0.9
+              }
+            },
+            "active": {
+              "filter": {
+                "type": "none"
+              }
+            }
+          },
+          "series": [
+            {
+              "name": "sum(monitors)",
+              "data": [
+                52,
+                40,
+                8,
+                30,
+                60,
+                45,
+                52,
+                12,
+                18,
+                35,
+                10
+              ],
+              "type": "column"
+            },
+            {
+              "name": "sum(students)",
+              "data": [
+                1295,
+                910,
+                420,
+                780,
+                1320,
+                1100,
+                980,
+                560,
+                500,
+                870,
+                450
+              ],
+              "type": "line"
+            }
+          ],
+          "colors": [
+            "#2f9e5b",
+            "#7f8a96"
+          ],
+          "stroke": {
+            "width": [
+              0,
+              2
+            ],
+            "curve": "straight"
+          },
+          "markers": {
+            "size": 4,
+            "strokeWidth": 0
+          },
+          "dataLabels": {
+            "enabled": true,
+            "style": {
+              "fontSize": "12px",
+              "fontWeight": 500,
+              "colors": [
+                "#374151",
+                "#374151"
+              ]
+            },
+            "background": {
+              "enabled": false
+            },
+            "dropShadow": {
+              "enabled": false
+            },
+            "offsetY": -18
+          },
+          "plotOptions": {
+            "bar": {
+              "horizontal": false,
+              "borderRadius": 0,
+              "barHeight": "55%",
+              "columnWidth": "55%",
+              "dataLabels": {
+                "position": "top"
+              }
+            }
+          },
+          "xaxis": {
+            "categories": [
+              "Kikuyu Primary",
+              "Mlimwa Secondary",
+              "Chamwino Primary",
+              "Msalato Girls",
+              "Kinondoni Primary",
+              "Temeke Secondary",
+              "Ilala Girls",
+              "Ubungo Primary",
+              "Meru Primary",
+              "Arusha Day",
+              "Monduli Secondary"
+            ],
+            "axisTicks": {
+              "show": false
+            },
+            "axisBorder": {
+              "show": true,
+              "color": "#e3e7ec"
+            },
+            "labels": {
+              "style": {
+                "fontSize": "12px"
+              }
+            }
+          },
+          "yaxis": [
+            {
+              "seriesName": "sum(monitors)",
+              "opposite": false,
+              "show": true,
+              "min": 0,
+              "forceNiceScale": true,
+              "decimalsInFloat": 0,
+              "labels": {
+                "style": {
+                  "colors": "#6b7280"
+                }
+              }
+            },
+            {
+              "seriesName": "sum(students)",
+              "opposite": true,
+              "show": true,
+              "min": 0,
+              "forceNiceScale": true,
+              "decimalsInFloat": 0,
+              "labels": {
+                "style": {
+                  "colors": "#6b7280"
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "line": 39,
+    "source": "schools | draw pie(sum(students)) against region",
+    "value": {
+      "kind": "chart",
+      "chartType": "pie",
+      "question": "sum(students) against region",
+      "title": "pie(sum(students)) against Region",
+      "spec": {
+        "mode": "series",
+        "against": "region",
+        "layout": {
+          "title": "pie(sum(students)) against Region",
+          "horizontal": false,
+          "stacked": false,
+          "legend": true,
+          "scales": "shared"
+        },
+        "data": {
+          "labels": [
+            "Dodoma",
+            "Dar es Salaam",
+            "Arusha"
+          ],
+          "series": [
+            {
+              "label": "sum(students)",
+              "values": [
+                3405,
+                3960,
+                1820
+              ],
+              "type": "bar",
+              "axis": "left"
+            }
+          ]
+        },
+        "apex": {
+          "chart": {
+            "type": "pie",
+            "height": 280,
+            "toolbar": {
+              "show": false
+            },
+            "animations": {
+              "enabled": false
+            },
+            "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
+            "foreColor": "#374151",
+            "background": "#f4f6f8",
+            "stacked": false
+          },
+          "title": {
+            "text": "pie(sum(students)) against Region",
+            "align": "left",
+            "style": {
+              "fontSize": "13px",
+              "fontWeight": 600,
+              "color": "#374151"
+            }
+          },
+          "legend": {
+            "show": true,
+            "position": "right",
+            "fontSize": "12px",
+            "markers": {
+              "shape": "square",
+              "size": 5,
+              "strokeWidth": 0
+            },
+            "itemMargin": {
+              "horizontal": 10
+            }
+          },
+          "grid": {
+            "show": false,
+            "padding": {
+              "left": 8,
+              "right": 16,
+              "top": 4,
+              "bottom": 4
+            }
+          },
+          "tooltip": {
+            "theme": "light",
+            "shared": true,
+            "intersect": false
+          },
+          "states": {
+            "hover": {
+              "filter": {
+                "type": "darken",
+                "value": 0.9
+              }
+            },
+            "active": {
+              "filter": {
+                "type": "none"
+              }
+            }
+          },
+          "series": [
+            3405,
+            3960,
+            1820
+          ],
+          "labels": [
+            "Dodoma",
+            "Dar es Salaam",
+            "Arusha"
+          ],
+          "colors": [
+            "#2f9e5b",
+            "#7f8a96",
+            "#3b7ddd"
+          ],
+          "stroke": {
+            "width": 2,
+            "colors": [
+              "#f4f6f8"
+            ]
+          },
+          "dataLabels": {
+            "enabled": true,
+            "style": {
+              "fontSize": "12px",
+              "fontWeight": 500
+            },
+            "dropShadow": {
+              "enabled": false
+            }
+          },
+          "plotOptions": {
+            "pie": {
+              "expandOnClick": false,
+              "donut": {
+                "size": "62%"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "line": 40,
+    "source": "schools | draw bar(it_rating, has_lab) against region",
+    "value": {
+      "kind": "chart",
+      "chartType": "bar",
+      "question": "it_rating,has_lab against region",
+      "title": "bar(it_rating, has_lab) against Region",
+      "spec": {
+        "mode": "series",
+        "against": "region",
+        "layout": {
+          "title": "bar(it_rating, has_lab) against Region",
+          "horizontal": true,
+          "stacked": true,
+          "legend": true,
+          "scales": "shared"
+        },
+        "data": {
+          "labels": [
+            "Dodoma",
+            "Dar es Salaam",
+            "Arusha"
+          ],
+          "series": [
+            {
+              "label": "avg(it_rating)",
+              "values": [
+                3.4,
+                3.75,
+                2.6667
+              ],
+              "type": "bar",
+              "axis": "left"
+            },
+            {
+              "label": "has_lab: Yes",
+              "values": [
+                4,
+                3,
+                2
+              ],
+              "type": "bar",
+              "axis": "left",
+              "stack": "has_lab"
+            },
+            {
+              "label": "has_lab: No",
+              "values": [
+                1,
+                1,
+                1
+              ],
+              "type": "bar",
+              "axis": "left",
+              "stack": "has_lab"
+            }
+          ]
+        },
+        "apex": {
+          "chart": {
+            "type": "bar",
+            "height": 254,
+            "toolbar": {
+              "show": false
+            },
+            "animations": {
+              "enabled": false
+            },
+            "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
+            "foreColor": "#374151",
+            "background": "#f4f6f8",
+            "stacked": true
+          },
+          "title": {
+            "text": "bar(it_rating, has_lab) against Region",
+            "align": "left",
+            "style": {
+              "fontSize": "13px",
+              "fontWeight": 600,
+              "color": "#374151"
+            }
+          },
+          "legend": {
+            "show": true,
+            "position": "top",
+            "horizontalAlign": "left",
+            "fontSize": "12px",
+            "markers": {
+              "shape": "square",
+              "size": 5,
+              "strokeWidth": 0
+            },
+            "itemMargin": {
+              "horizontal": 10
+            }
+          },
+          "grid": {
+            "show": false,
+            "padding": {
+              "left": 8,
+              "right": 16,
+              "top": 4,
+              "bottom": 4
+            }
+          },
+          "tooltip": {
+            "theme": "light",
+            "shared": true,
+            "intersect": false
+          },
+          "states": {
+            "hover": {
+              "filter": {
+                "type": "darken",
+                "value": 0.9
+              }
+            },
+            "active": {
+              "filter": {
+                "type": "none"
+              }
+            }
+          },
+          "series": [
+            {
+              "name": "avg(it_rating)",
+              "data": [
+                3.4,
+                3.75,
+                2.6667
+              ],
+              "group": "s1"
+            },
+            {
+              "name": "has_lab: Yes",
+              "data": [
+                4,
+                3,
+                2
+              ],
+              "group": "has_lab"
+            },
+            {
+              "name": "has_lab: No",
+              "data": [
+                1,
+                1,
+                1
+              ],
+              "group": "has_lab"
+            }
+          ],
+          "colors": [
+            "#2f9e5b",
+            "#7f8a96",
+            "#3b7ddd"
+          ],
+          "stroke": {
+            "width": [
+              0,
+              0,
+              0
+            ],
+            "curve": "straight"
+          },
+          "markers": {
+            "size": 0,
+            "strokeWidth": 0
+          },
+          "dataLabels": {
+            "enabled": true,
+            "style": {
+              "fontSize": "12px",
+              "fontWeight": 500,
+              "colors": [
+                "#374151",
+                "#ffffff",
+                "#ffffff"
+              ]
+            },
+            "background": {
+              "enabled": false
+            },
+            "dropShadow": {
+              "enabled": false
+            },
+            "offsetX": 0,
+            "textAnchor": "middle"
+          },
+          "plotOptions": {
+            "bar": {
+              "horizontal": true,
+              "borderRadius": 3,
+              "barHeight": "55%",
+              "columnWidth": "55%",
+              "dataLabels": {
+                "position": "center",
+                "hideOverflowingLabels": false
+              },
+              "colors": {
+                "backgroundBarColors": [
+                  "#e3e7ec"
+                ],
+                "backgroundBarOpacity": 1,
+                "backgroundBarRadius": 3
+              },
+              "borderRadiusApplication": "end"
+            }
+          },
+          "yaxis": {
+            "show": true,
+            "labels": {
+              "style": {
+                "fontSize": "12px"
+              }
+            }
+          },
+          "xaxis": {
+            "categories": [
+              "Dodoma",
+              "Dar es Salaam",
+              "Arusha"
+            ],
+            "min": 0,
+            "max": 6.25,
+            "labels": {
+              "show": false
+            },
+            "axisTicks": {
+              "show": false
+            },
+            "axisBorder": {
+              "show": false
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "line": 43,
+    "source": "let baseline = load fixtures/survey.json fixtures/responses.json",
+    "value": {
+      "kind": "message",
+      "text": "baseline = dataset (20 rows)"
+    }
+  },
+  {
+    "line": 44,
+    "source": "let endline = load fixtures/survey.json fixtures/responses-endline.json",
+    "value": {
+      "kind": "message",
+      "text": "endline = dataset (15 rows)"
+    }
+  },
+  {
+    "line": 45,
+    "source": "let waves = union(baseline, endline)",
+    "value": {
+      "kind": "message",
+      "text": "waves = dataset (35 rows)"
+    }
+  },
+  {
+    "line": 46,
+    "source": "waves | count(all) by source",
+    "value": {
+      "kind": "table",
+      "label": "count by source",
+      "columns": [
+        "source",
+        "count"
+      ],
+      "rows": [
+        [
+          "baseline",
+          20
+        ],
+        [
+          "endline",
+          15
+        ]
+      ]
+    }
+  },
+  {
+    "line": 47,
+    "source": "waves | get avg(satisfaction, 1), avg(income, 0), count(all) by source",
+    "value": {
+      "kind": "table",
+      "label": "get avg(satisfaction), avg(income), count(all) by source",
+      "columns": [
+        "source",
+        "avg(satisfaction)",
+        "avg(income)",
+        "count(all)"
+      ],
+      "rows": [
+        [
+          "baseline",
+          3.5,
+          54278,
+          20
+        ],
+        [
+          "endline",
+          4.6,
+          53267,
+          15
+        ]
+      ]
+    }
+  },
+  {
+    "line": 48,
+    "source": "waves | draw bar(avg(satisfaction)) with line(count(all), right) against source",
+    "value": {
+      "kind": "chart",
+      "chartType": "bar",
+      "question": "avg(satisfaction) against source",
+      "title": "bar(avg(satisfaction)) with line(count(all)) against Source",
+      "spec": {
+        "mode": "series",
+        "against": "source",
+        "layout": {
+          "title": "bar(avg(satisfaction)) with line(count(all)) against Source",
+          "horizontal": false,
+          "stacked": false,
+          "legend": true,
+          "scales": "shared"
+        },
+        "data": {
+          "labels": [
+            "baseline",
+            "endline"
+          ],
+          "series": [
+            {
+              "label": "avg(satisfaction)",
+              "values": [
+                3.5263,
+                4.6
+              ],
+              "type": "bar",
+              "axis": "left"
+            },
+            {
+              "label": "count(all)",
+              "values": [
+                20,
+                15
+              ],
+              "type": "line",
+              "axis": "right"
+            }
+          ]
+        },
+        "apex": {
+          "chart": {
+            "type": "line",
+            "height": 300,
+            "toolbar": {
+              "show": false
+            },
+            "animations": {
+              "enabled": false
+            },
+            "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
+            "foreColor": "#374151",
+            "background": "#f4f6f8",
+            "stacked": false
+          },
+          "title": {
+            "text": "bar(avg(satisfaction)) with line(count(all)) against Source",
+            "align": "left",
+            "style": {
+              "fontSize": "13px",
+              "fontWeight": 600,
+              "color": "#374151"
+            }
+          },
+          "legend": {
+            "show": true,
+            "position": "top",
+            "horizontalAlign": "left",
+            "fontSize": "12px",
+            "markers": {
+              "shape": "square",
+              "size": 5,
+              "strokeWidth": 0
+            },
+            "itemMargin": {
+              "horizontal": 10
+            }
+          },
+          "grid": {
+            "show": true,
+            "padding": {
+              "left": 8,
+              "right": 16,
+              "top": 4,
+              "bottom": 4
+            },
+            "borderColor": "#e3e7ec",
+            "xaxis": {
+              "lines": {
+                "show": false
+              }
+            }
+          },
+          "tooltip": {
+            "theme": "light",
+            "shared": true,
+            "intersect": false
+          },
+          "states": {
+            "hover": {
+              "filter": {
+                "type": "darken",
+                "value": 0.9
+              }
+            },
+            "active": {
+              "filter": {
+                "type": "none"
+              }
+            }
+          },
+          "series": [
+            {
+              "name": "avg(satisfaction)",
+              "data": [
+                3.5263,
+                4.6
+              ],
+              "type": "column"
+            },
+            {
+              "name": "count(all)",
+              "data": [
+                20,
+                15
+              ],
+              "type": "line"
+            }
+          ],
+          "colors": [
+            "#2f9e5b",
+            "#7f8a96"
+          ],
+          "stroke": {
+            "width": [
+              0,
+              2
+            ],
+            "curve": "straight"
+          },
+          "markers": {
+            "size": 4,
+            "strokeWidth": 0
+          },
+          "dataLabels": {
+            "enabled": true,
+            "style": {
+              "fontSize": "12px",
+              "fontWeight": 500,
+              "colors": [
+                "#374151",
+                "#374151"
+              ]
+            },
+            "background": {
+              "enabled": false
+            },
+            "dropShadow": {
+              "enabled": false
+            },
+            "offsetY": -18
+          },
+          "plotOptions": {
+            "bar": {
+              "horizontal": false,
+              "borderRadius": 0,
+              "barHeight": "55%",
+              "columnWidth": "55%",
+              "dataLabels": {
+                "position": "top"
+              }
+            }
+          },
+          "xaxis": {
+            "categories": [
+              "baseline",
+              "endline"
+            ],
+            "axisTicks": {
+              "show": false
+            },
+            "axisBorder": {
+              "show": true,
+              "color": "#e3e7ec"
+            },
+            "labels": {
+              "style": {
+                "fontSize": "12px"
+              }
+            }
+          },
+          "yaxis": [
+            {
+              "seriesName": "avg(satisfaction)",
+              "opposite": false,
+              "show": true,
+              "min": 0,
+              "forceNiceScale": true,
+              "decimalsInFloat": 2,
+              "labels": {
+                "style": {
+                  "colors": "#6b7280"
+                }
+              }
+            },
+            {
+              "seriesName": "count(all)",
+              "opposite": true,
+              "show": true,
+              "min": 0,
+              "forceNiceScale": true,
+              "decimalsInFloat": 0,
+              "labels": {
+                "style": {
+                  "colors": "#6b7280"
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "line": 49,
+    "source": "let inventory = load fixtures/inventory.json fixtures/inventory-responses.json",
+    "value": {
+      "kind": "message",
+      "text": "inventory = dataset (11 rows)"
+    }
+  },
+  {
+    "line": 50,
+    "source": "let merged = join(schools, inventory) on school_name",
+    "value": {
+      "kind": "message",
+      "text": "merged = dataset (12 rows)"
+    }
+  },
+  {
+    "line": 51,
+    "source": "merged | get school_name, students, inventory.cpus, tablets, lab_type where region is \"dodoma\"",
+    "value": {
+      "kind": "rows",
+      "columns": [
+        "school_name",
+        "students",
+        "inventory.cpus",
+        "tablets",
+        "lab_type"
+      ],
+      "rows": [
+        {
+          "school_name": "Kikuyu Primary",
+          "students": 640,
+          "inventory.cpus": 40,
+          "tablets": 25,
+          "lab_type": "none"
+        },
+        {
+          "school_name": "Mlimwa Secondary",
+          "students": 910,
+          "inventory.cpus": 40,
+          "tablets": 0,
+          "lab_type": "none"
+        },
+        {
+          "school_name": "Chamwino Primary",
+          "students": 420
+        },
+        {
+          "school_name": "Msalato Girls",
+          "students": 780,
+          "inventory.cpus": 8,
+          "tablets": 40,
+          "lab_type": "laptop"
+        },
+        {
+          "school_name": "Kikuyu Primary",
+          "students": 655,
+          "inventory.cpus": 40,
+          "tablets": 25,
+          "lab_type": "none"
+        }
+      ],
+      "total": 5
+    }
+  },
+  {
+    "line": 52,
+    "source": "merged | draw bar(inventory.cpus, tablets) against school_name",
+    "value": {
+      "kind": "chart",
+      "chartType": "bar",
+      "question": "inventory.cpus,tablets against school_name",
+      "title": "bar(inventory.cpus, tablets) against School name",
+      "spec": {
+        "mode": "series",
+        "against": "school_name",
+        "layout": {
+          "title": "bar(inventory.cpus, tablets) against School name",
+          "horizontal": true,
+          "stacked": false,
+          "legend": true,
+          "scales": "shared"
+        },
+        "data": {
+          "labels": [
+            "Kikuyu Primary",
+            "Mlimwa Secondary",
+            "Chamwino Primary",
+            "Msalato Girls",
+            "Kinondoni Primary",
+            "Temeke Secondary",
+            "Ilala Girls",
+            "Ubungo Primary",
+            "Meru Primary",
+            "Arusha Day",
+            "Monduli Secondary"
+          ],
+          "series": [
+            {
+              "label": "sum(inventory.cpus)",
+              "values": [
+                80,
+                40,
+                0,
+                8,
+                12,
+                12,
+                8,
+                8,
+                12,
+                20,
+                0
+              ],
+              "type": "bar",
+              "axis": "left"
+            },
+            {
+              "label": "sum(tablets)",
+              "values": [
+                50,
+                0,
+                0,
+                40,
+                0,
+                0,
+                0,
+                25,
+                40,
+                25,
+                0
+              ],
+              "type": "bar",
+              "axis": "left"
+            }
+          ]
+        },
+        "apex": {
+          "chart": {
+            "type": "bar",
+            "height": 718,
+            "toolbar": {
+              "show": false
+            },
+            "animations": {
+              "enabled": false
+            },
+            "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
+            "foreColor": "#374151",
+            "background": "#f4f6f8",
+            "stacked": false
+          },
+          "title": {
+            "text": "bar(inventory.cpus, tablets) against School name",
+            "align": "left",
+            "style": {
+              "fontSize": "13px",
+              "fontWeight": 600,
+              "color": "#374151"
+            }
+          },
+          "legend": {
+            "show": true,
+            "position": "top",
+            "horizontalAlign": "left",
+            "fontSize": "12px",
+            "markers": {
+              "shape": "square",
+              "size": 5,
+              "strokeWidth": 0
+            },
+            "itemMargin": {
+              "horizontal": 10
+            }
+          },
+          "grid": {
+            "show": false,
+            "padding": {
+              "left": 8,
+              "right": 16,
+              "top": 4,
+              "bottom": 4
+            }
+          },
+          "tooltip": {
+            "theme": "light",
+            "shared": true,
+            "intersect": false
+          },
+          "states": {
+            "hover": {
+              "filter": {
+                "type": "darken",
+                "value": 0.9
+              }
+            },
+            "active": {
+              "filter": {
+                "type": "none"
+              }
+            }
+          },
+          "series": [
+            {
+              "name": "sum(inventory.cpus)",
+              "data": [
+                80,
+                40,
+                0,
+                8,
+                12,
+                12,
+                8,
+                8,
+                12,
+                20,
+                0
+              ]
+            },
+            {
+              "name": "sum(tablets)",
+              "data": [
+                50,
+                0,
+                0,
+                40,
+                0,
+                0,
+                0,
+                25,
+                40,
+                25,
+                0
+              ]
+            }
+          ],
+          "colors": [
+            "#2f9e5b",
+            "#7f8a96"
+          ],
+          "stroke": {
+            "width": [
+              0,
+              0
+            ],
+            "curve": "straight"
+          },
+          "markers": {
+            "size": 0,
+            "strokeWidth": 0
+          },
+          "dataLabels": {
+            "enabled": true,
+            "style": {
+              "fontSize": "12px",
+              "fontWeight": 500,
+              "colors": [
+                "#374151",
+                "#374151"
+              ]
+            },
+            "background": {
+              "enabled": false
+            },
+            "dropShadow": {
+              "enabled": false
+            },
+            "offsetX": 6,
+            "textAnchor": "start"
+          },
+          "plotOptions": {
+            "bar": {
+              "horizontal": true,
+              "borderRadius": 3,
+              "barHeight": "55%",
+              "columnWidth": "55%",
+              "dataLabels": {
+                "position": "top",
+                "hideOverflowingLabels": false
+              },
+              "colors": {
+                "backgroundBarColors": [
+                  "#e3e7ec"
+                ],
+                "backgroundBarOpacity": 1,
+                "backgroundBarRadius": 3
+              },
+              "borderRadiusApplication": "end"
+            }
+          },
+          "yaxis": {
+            "show": true,
+            "labels": {
+              "style": {
+                "fontSize": "12px"
+              }
+            }
+          },
+          "xaxis": {
+            "categories": [
+              "Kikuyu Primary",
+              "Mlimwa Secondary",
+              "Chamwino Primary",
+              "Msalato Girls",
+              "Kinondoni Primary",
+              "Temeke Secondary",
+              "Ilala Girls",
+              "Ubungo Primary",
+              "Meru Primary",
+              "Arusha Day",
+              "Monduli Secondary"
+            ],
+            "min": 0,
+            "max": 100,
+            "labels": {
+              "show": false
+            },
+            "axisTicks": {
+              "show": false
+            },
+            "axisBorder": {
+              "show": false
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "line": 53,
+    "source": "sources()",
+    "value": {
+      "kind": "table",
+      "label": "sources",
+      "columns": [
+        "name",
+        "responses",
+        "questions",
+        "origin",
+        "default"
+      ],
+      "rows": [
+        [
+          "adults",
+          19,
+          8,
+          "fixtures/responses.json",
+          ""
+        ],
+        [
+          "schools",
+          12,
+          11,
+          "fixtures/schools-responses.json",
+          ""
+        ],
+        [
+          "baseline",
+          20,
+          8,
+          "fixtures/responses.json",
+          ""
+        ],
+        [
+          "endline",
+          15,
+          8,
+          "fixtures/responses-endline.json",
+          ""
+        ],
+        [
+          "waves",
+          35,
+          9,
+          "union(baseline, endline)",
+          ""
+        ],
+        [
+          "inventory",
+          11,
+          5,
+          "fixtures/inventory-responses.json",
+          ""
+        ],
+        [
+          "merged",
+          12,
+          14,
+          "join(schools, inventory) on school_name",
+          ""
+        ],
+        [
+          "(default)",
+          20,
+          8,
+          "fixtures/responses.json",
+          "yes"
+        ]
+      ]
+    }
+  }
+]

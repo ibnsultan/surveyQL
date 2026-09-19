@@ -1,0 +1,14 @@
+[
+  { "school_name": "Kikuyu Primary",   "region": "dodoma", "month": "2026-01", "monitors": 24, "printers": 2, "cpus": 22, "routers": 1, "working_computers": 18, "students": 640, "it_rating": 3, "has_lab": true },
+  { "school_name": "Mlimwa Secondary", "region": "dodoma", "month": "2026-01", "monitors": 40, "printers": 4, "cpus": 38, "routers": 2, "working_computers": 35, "students": 910, "it_rating": 4, "has_lab": true },
+  { "school_name": "Chamwino Primary", "region": "dodoma", "month": "2026-02", "monitors": 8,  "printers": 1, "cpus": 8,  "routers": 0, "working_computers": 5,  "students": 420, "it_rating": 2, "has_lab": false },
+  { "school_name": "Msalato Girls",    "region": "dodoma", "month": "2026-02", "monitors": 30, "printers": 3, "cpus": 30, "routers": 2, "working_computers": 27, "students": 780, "it_rating": 4, "has_lab": true },
+  { "school_name": "Kinondoni Primary","region": "dar",    "month": "2026-03", "monitors": 60, "printers": 5, "cpus": 58, "routers": 3, "working_computers": 51, "students": 1320, "it_rating": 5, "has_lab": true },
+  { "school_name": "Temeke Secondary", "region": "dar",    "month": "2026-03", "monitors": 45, "printers": 3, "cpus": 44, "routers": 2, "working_computers": 30, "students": 1100, "it_rating": 3, "has_lab": true },
+  { "school_name": "Ilala Girls",      "region": "dar",    "month": "2026-04", "monitors": 52, "printers": 6, "cpus": 50, "routers": 4, "working_computers": 49, "students": 980, "it_rating": 5, "has_lab": true },
+  { "school_name": "Ubungo Primary",   "region": "dar",    "month": "2026-04", "monitors": 12, "printers": 1, "cpus": 12, "routers": 1, "working_computers": 9,  "students": 560, "it_rating": 2, "has_lab": false },
+  { "school_name": "Meru Primary",     "region": "arusha", "month": "2026-05", "monitors": 18, "printers": 2, "cpus": 16, "routers": 1, "working_computers": 14, "students": 500, "it_rating": 3, "has_lab": true },
+  { "school_name": "Arusha Day",       "region": "arusha", "month": "2026-05", "monitors": 35, "printers": 3, "cpus": 34, "routers": 2, "working_computers": 33, "students": 870, "it_rating": 4, "has_lab": true },
+  { "school_name": "Monduli Secondary","region": "arusha", "month": "2026-06", "monitors": 10, "printers": 1, "cpus": 10, "routers": 0, "working_computers": 4,  "students": 450, "it_rating": 1, "has_lab": false },
+  { "school_name": "Kikuyu Primary",   "region": "dodoma", "month": "2026-06", "monitors": 28, "printers": 2, "cpus": 26, "routers": 1, "working_computers": 24, "students": 655, "it_rating": 4, "has_lab": true }
+]

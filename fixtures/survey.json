@@ -1,0 +1,116 @@
+{
+  "title": "Customer Feedback",
+  "pages": [
+    {
+      "name": "page1",
+      "elements": [
+        {
+          "type": "text",
+          "name": "age",
+          "title": "How old are you?",
+          "inputType": "number"
+        },
+        {
+          "type": "radiogroup",
+          "name": "gender",
+          "title": "Gender",
+          "choices": [
+            {
+              "value": "male",
+              "text": "Male"
+            },
+            {
+              "value": "female",
+              "text": "Female"
+            },
+            {
+              "value": "other",
+              "text": "Other"
+            }
+          ]
+        },
+        {
+          "type": "rating",
+          "name": "satisfaction",
+          "title": "Overall satisfaction",
+          "rateMin": 1,
+          "rateMax": 5,
+          "minRateDescription": "very unsatisfied",
+          "maxRateDescription": "very satisfied"
+        },
+        {
+          "type": "checkbox",
+          "name": "colors",
+          "title": "Favourite colours",
+          "choices": [
+            {
+              "value": "red",
+              "text": "Red"
+            },
+            {
+              "value": "green",
+              "text": "Green"
+            },
+            {
+              "value": "blue",
+              "text": "Blue"
+            },
+            {
+              "value": "yellow",
+              "text": "Yellow"
+            }
+          ]
+        },
+        {
+          "type": "boolean",
+          "name": "subscribed",
+          "title": "Subscribed to newsletter?"
+        },
+        {
+          "type": "text",
+          "name": "income",
+          "title": "Yearly income",
+          "inputType": "number"
+        },
+        {
+          "type": "matrix",
+          "name": "features",
+          "title": "Rate our features",
+          "columns": [
+            {
+              "value": "bad",
+              "text": "Bad"
+            },
+            {
+              "value": "ok",
+              "text": "OK"
+            },
+            {
+              "value": "good",
+              "text": "Good"
+            }
+          ],
+          "rows": [
+            {
+              "value": "price",
+              "text": "Price"
+            },
+            {
+              "value": "quality",
+              "text": "Quality"
+            },
+            {
+              "value": "support",
+              "text": "Support"
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "comment",
+          "title": "Anything else?"
+        }
+      ]
+    }
+  ]
+}
