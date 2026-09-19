@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SurveyQL playground</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>SurveyQL <span>playground</span></h1>
+      <div class="sources-panel">
+        <div class="sources-head">
+          <span>Sources <small>name · survey · responses — each row is a dataset variable; the first is the default</small></span>
+          <button id="add-source" class="secondary" type="button">+ Add source</button>
+          <button id="reload" type="button">Reload data</button>
+        </div>
+        <div id="sources"></div>
+      </div>
+    </header>
+    <main>
+      <section class="editor-pane">
+        <div class="toolbar">
+          <button id="run" title="Ctrl+Enter">Run</button>
+          <label class="engine">
+            Charts
+            <select id="engine">
+              <option value="apexcharts">ApexCharts</option>
+              <option value="survey-analytics">survey-analytics</option>
+            </select>
+          </label>
+          <span id="status" class="status"></span>
+        </div>
+        <textarea id="editor" spellcheck="false"></textarea>
+        <details class="help">
+          <summary>Language cheat sheet</summary>
+          <pre>
+load &lt;survey&gt; [&lt;responses&gt;]         paths or URLs; let b = load … binds a source without changing the default
+questions() / sources()             list questions / list loaded datasets
+avg|sum|min|max|median(q[, dp])     numbers; add: where gender is "female", by gender; dp = decimal places
+count(all | q)                      row count or frequency table
+get avg(income), count(all) by gender   several measures in one table
+filter age &gt; 30 | avg(income)       pipes narrow the data
+sample(5) / show(10)                preview rows
+draw bar|vbar|pie|doughnut(q)       charts; draw hist(q, bins); draw gauge(q)
+draw bar(a, b) against key          series per key; with line(c, right) for combined charts
+let adults = filter age &gt;= 18       variables; then: adults | avg(income)
+union(a, b) / join(b) on key        combine sources; use b; rename q as name
+where x between(25, 40) and y is "z"  expressions: and or not in is contains between
+indent a line, or start it with with / against / where / by / |   to continue the statement above
+`Name with spaces`                  backticks for odd question names
+colors.red / features.price         sub-fields of checkbox and matrix questions
+</pre>
+        </details>
+      </section>
+      <section class="output-pane">
+        <div id="output"></div>
+      </section>
+    </main>
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>
