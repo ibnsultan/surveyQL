@@ -98,6 +98,10 @@ docs/               documentation
 test/               vitest suites
 ```
 
-## Status
 
-Version 0.1. Not yet supported: sorting or limiting groups in series charts, survey-analytics rendering of series charts, `matrixdynamic`/`paneldynamic` beyond `show`/`count`, authenticated remote URLs. See [Architecture § Known limitations](docs/architecture.md#known-limitations).
+## Known limitations
+
+- `matrixdynamic` / `paneldynamic` are typed `object`; only `show`, `count` and `describe` handle them.
+- Series charts cannot sort or limit groups, and survey-analytics cannot render them or combined (union/join) data (ApexCharts is used).
+- No authentication for remote URLs.
+- Gauge is a radial-bar approximation; the real numbers are in `spec.stats`.
