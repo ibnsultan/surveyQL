@@ -559,7 +559,7 @@
             "hover": {
               "filter": {
                 "type": "darken",
-                "value": 0.9
+                "value": 0.08
               }
             },
             "active": {
@@ -717,7 +717,7 @@
             "hover": {
               "filter": {
                 "type": "darken",
-                "value": 0.9
+                "value": 0.08
               }
             },
             "active": {
@@ -1195,7 +1195,7 @@
             "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
             "foreColor": "#374151",
             "background": "#f4f6f8",
-            "stacked": false
+            "stacked": true
           },
           "title": {
             "text": "bar(monitors, printers, cpus, routers) against School name",
@@ -1214,11 +1214,23 @@
             "markers": {
               "shape": "square",
               "size": 5,
-              "strokeWidth": 0
+              "strokeWidth": 0,
+              "fillColors": [
+                "#2f9e5b",
+                "#7f8a96",
+                "#3b7ddd",
+                "#d99a2b"
+              ]
             },
             "itemMargin": {
               "horizontal": 10
-            }
+            },
+            "customLegendItems": [
+              "sum(monitors)",
+              "sum(printers)",
+              "sum(cpus)",
+              "sum(routers)"
+            ]
           },
           "grid": {
             "show": false,
@@ -1231,14 +1243,19 @@
           },
           "tooltip": {
             "theme": "light",
-            "shared": true,
-            "intersect": false
+            "shared": false,
+            "intersect": true,
+            "enabledOnSeries": [
+              0,
+              1,
+              2,
+              3
+            ]
           },
           "states": {
             "hover": {
               "filter": {
-                "type": "darken",
-                "value": 0.9
+                "type": "none"
               }
             },
             "active": {
@@ -1251,65 +1268,501 @@
             {
               "name": "sum(monitors)",
               "data": [
-                52,
-                40,
-                8,
-                30,
-                60,
-                45,
-                52,
-                12,
-                18,
-                35,
-                10
-              ]
+                {
+                  "x": "Kikuyu Primary",
+                  "y": 52,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Mlimwa Secondary",
+                  "y": 40,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Chamwino Primary",
+                  "y": 8,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Msalato Girls",
+                  "y": 30,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Kinondoni Primary",
+                  "y": 60,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Temeke Secondary",
+                  "y": 45,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Ilala Girls",
+                  "y": 52,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Ubungo Primary",
+                  "y": 12,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Meru Primary",
+                  "y": 18,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Arusha Day",
+                  "y": 35,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Monduli Secondary",
+                  "y": 10,
+                  "barHeightOffset": -4
+                }
+              ],
+              "group": "s1"
             },
             {
               "name": "sum(printers)",
               "data": [
-                4,
-                4,
-                1,
-                3,
-                5,
-                3,
-                6,
-                1,
-                2,
-                3,
-                1
-              ]
+                {
+                  "x": "Kikuyu Primary",
+                  "y": 4,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Mlimwa Secondary",
+                  "y": 4,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Chamwino Primary",
+                  "y": 1,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Msalato Girls",
+                  "y": 3,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Kinondoni Primary",
+                  "y": 5,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Temeke Secondary",
+                  "y": 3,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Ilala Girls",
+                  "y": 6,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Ubungo Primary",
+                  "y": 1,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Meru Primary",
+                  "y": 2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Arusha Day",
+                  "y": 3,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Monduli Secondary",
+                  "y": 1,
+                  "barHeightOffset": -4
+                }
+              ],
+              "group": "s2"
             },
             {
               "name": "sum(cpus)",
               "data": [
-                48,
-                38,
-                8,
-                30,
-                58,
-                44,
-                50,
-                12,
-                16,
-                34,
-                10
-              ]
+                {
+                  "x": "Kikuyu Primary",
+                  "y": 48,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Mlimwa Secondary",
+                  "y": 38,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Chamwino Primary",
+                  "y": 8,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Msalato Girls",
+                  "y": 30,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Kinondoni Primary",
+                  "y": 58,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Temeke Secondary",
+                  "y": 44,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Ilala Girls",
+                  "y": 50,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Ubungo Primary",
+                  "y": 12,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Meru Primary",
+                  "y": 16,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Arusha Day",
+                  "y": 34,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Monduli Secondary",
+                  "y": 10,
+                  "barHeightOffset": -4
+                }
+              ],
+              "group": "s3"
             },
             {
               "name": "sum(routers)",
               "data": [
-                2,
-                2,
-                0,
-                2,
-                3,
-                2,
-                4,
-                1,
-                1,
-                2,
+                {
+                  "x": "Kikuyu Primary",
+                  "y": 2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Mlimwa Secondary",
+                  "y": 2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Chamwino Primary",
+                  "y": 0,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Msalato Girls",
+                  "y": 2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Kinondoni Primary",
+                  "y": 3,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Temeke Secondary",
+                  "y": 2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Ilala Girls",
+                  "y": 4,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Ubungo Primary",
+                  "y": 1,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Meru Primary",
+                  "y": 1,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Arusha Day",
+                  "y": 2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Monduli Secondary",
+                  "y": 0,
+                  "barHeightOffset": -4
+                }
+              ],
+              "group": "s4"
+            },
+            {
+              "name": "",
+              "data": [
+                {
+                  "x": "Kikuyu Primary",
+                  "y": 9.2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Mlimwa Secondary",
+                  "y": 21.2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Chamwino Primary",
+                  "y": 53.2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Msalato Girls",
+                  "y": 31.2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Kinondoni Primary",
+                  "y": 1.2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Temeke Secondary",
+                  "y": 16.2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Ilala Girls",
+                  "y": 9.2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Ubungo Primary",
+                  "y": 49.2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Meru Primary",
+                  "y": 43.2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Arusha Day",
+                  "y": 26.2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Monduli Secondary",
+                  "y": 51.2,
+                  "barHeightOffset": -4
+                }
+              ],
+              "group": "s1",
+              "track": [
                 0
+              ]
+            },
+            {
+              "name": "",
+              "data": [
+                {
+                  "x": "Kikuyu Primary",
+                  "y": 57.2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Mlimwa Secondary",
+                  "y": 57.2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Chamwino Primary",
+                  "y": 60.2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Msalato Girls",
+                  "y": 58.2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Kinondoni Primary",
+                  "y": 56.2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Temeke Secondary",
+                  "y": 58.2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Ilala Girls",
+                  "y": 55.2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Ubungo Primary",
+                  "y": 60.2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Meru Primary",
+                  "y": 59.2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Arusha Day",
+                  "y": 58.2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Monduli Secondary",
+                  "y": 60.2,
+                  "barHeightOffset": -4
+                }
+              ],
+              "group": "s2",
+              "track": [
+                1
+              ]
+            },
+            {
+              "name": "",
+              "data": [
+                {
+                  "x": "Kikuyu Primary",
+                  "y": 13.2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Mlimwa Secondary",
+                  "y": 23.2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Chamwino Primary",
+                  "y": 53.2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Msalato Girls",
+                  "y": 31.2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Kinondoni Primary",
+                  "y": 3.2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Temeke Secondary",
+                  "y": 17.2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Ilala Girls",
+                  "y": 11.2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Ubungo Primary",
+                  "y": 49.2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Meru Primary",
+                  "y": 45.2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Arusha Day",
+                  "y": 27.2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Monduli Secondary",
+                  "y": 51.2,
+                  "barHeightOffset": -4
+                }
+              ],
+              "group": "s3",
+              "track": [
+                2
+              ]
+            },
+            {
+              "name": "",
+              "data": [
+                {
+                  "x": "Kikuyu Primary",
+                  "y": 59.2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Mlimwa Secondary",
+                  "y": 59.2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Chamwino Primary",
+                  "y": 61.2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Msalato Girls",
+                  "y": 59.2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Kinondoni Primary",
+                  "y": 58.2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Temeke Secondary",
+                  "y": 59.2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Ilala Girls",
+                  "y": 57.2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Ubungo Primary",
+                  "y": 60.2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Meru Primary",
+                  "y": 60.2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Arusha Day",
+                  "y": 59.2,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Monduli Secondary",
+                  "y": 61.2,
+                  "barHeightOffset": -4
+                }
+              ],
+              "group": "s4",
+              "track": [
+                3
               ]
             }
           ],
@@ -1317,16 +1770,14 @@
             "#2f9e5b",
             "#7f8a96",
             "#3b7ddd",
-            "#d99a2b"
+            "#d99a2b",
+            "#e3e7ec",
+            "#e3e7ec",
+            "#e3e7ec",
+            "#e3e7ec"
           ],
           "stroke": {
-            "width": [
-              0,
-              0,
-              0,
-              0
-            ],
-            "curve": "straight"
+            "width": 0
           },
           "markers": {
             "size": 0,
@@ -1341,6 +1792,10 @@
                 "#374151",
                 "#374151",
                 "#374151",
+                "#374151",
+                "#374151",
+                "#374151",
+                "#374151",
                 "#374151"
               ]
             },
@@ -1350,27 +1805,28 @@
             "dropShadow": {
               "enabled": false
             },
-            "offsetX": 6,
+            "enabledOnSeries": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "offsetX": 4,
             "textAnchor": "start"
           },
           "plotOptions": {
             "bar": {
               "horizontal": true,
               "borderRadius": 3,
-              "barHeight": "55%",
+              "barHeight": "72%",
               "columnWidth": "55%",
               "dataLabels": {
                 "position": "top",
                 "hideOverflowingLabels": false
               },
-              "colors": {
-                "backgroundBarColors": [
-                  "#e3e7ec"
-                ],
-                "backgroundBarOpacity": 1,
-                "backgroundBarRadius": 3
-              },
-              "borderRadiusApplication": "end"
+              "borderRadiusApplication": "around",
+              "borderRadiusWhenStacked": "all",
+              "colors": {}
             }
           },
           "yaxis": {
@@ -1396,7 +1852,7 @@
               "Monduli Secondary"
             ],
             "min": 0,
-            "max": 75,
+            "max": 72,
             "labels": {
               "show": false
             },
@@ -1544,7 +2000,7 @@
             "hover": {
               "filter": {
                 "type": "darken",
-                "value": 0.9
+                "value": 0.08
               }
             },
             "active": {
@@ -1784,7 +2240,7 @@
             "hover": {
               "filter": {
                 "type": "darken",
-                "value": 0.9
+                "value": 0.08
               }
             },
             "active": {
@@ -1927,11 +2383,21 @@
             "markers": {
               "shape": "square",
               "size": 5,
-              "strokeWidth": 0
+              "strokeWidth": 0,
+              "fillColors": [
+                "#2f9e5b",
+                "#7f8a96",
+                "#3b7ddd"
+              ]
             },
             "itemMargin": {
               "horizontal": 10
-            }
+            },
+            "customLegendItems": [
+              "avg(it_rating)",
+              "has_lab: Yes",
+              "has_lab: No"
+            ]
           },
           "grid": {
             "show": false,
@@ -1944,14 +2410,18 @@
           },
           "tooltip": {
             "theme": "light",
-            "shared": true,
-            "intersect": false
+            "shared": false,
+            "intersect": true,
+            "enabledOnSeries": [
+              0,
+              1,
+              2
+            ]
           },
           "states": {
             "hover": {
               "filter": {
-                "type": "darken",
-                "value": 0.9
+                "type": "none"
               }
             },
             "active": {
@@ -1964,43 +2434,125 @@
             {
               "name": "avg(it_rating)",
               "data": [
-                3.4,
-                3.75,
-                2.6667
+                {
+                  "x": "Dodoma",
+                  "y": 3.4,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Dar es Salaam",
+                  "y": 3.75,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Arusha",
+                  "y": 2.6667,
+                  "barHeightOffset": -4
+                }
               ],
               "group": "s1"
             },
             {
               "name": "has_lab: Yes",
               "data": [
-                4,
-                3,
-                2
+                {
+                  "x": "Dodoma",
+                  "y": 4,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Dar es Salaam",
+                  "y": 3,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Arusha",
+                  "y": 2,
+                  "barHeightOffset": -4
+                }
               ],
               "group": "has_lab"
             },
             {
               "name": "has_lab: No",
               "data": [
-                1,
-                1,
-                1
+                {
+                  "x": "Dodoma",
+                  "y": 1,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Dar es Salaam",
+                  "y": 1,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Arusha",
+                  "y": 1,
+                  "barHeightOffset": -4
+                }
               ],
               "group": "has_lab"
+            },
+            {
+              "name": "",
+              "data": [
+                {
+                  "x": "Dodoma",
+                  "y": 1.7,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Dar es Salaam",
+                  "y": 1.35,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Arusha",
+                  "y": 2.43,
+                  "barHeightOffset": -4
+                }
+              ],
+              "group": "s1",
+              "track": [
+                0
+              ]
+            },
+            {
+              "name": "",
+              "data": [
+                {
+                  "x": "Dodoma",
+                  "y": 0.1,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Dar es Salaam",
+                  "y": 1.1,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Arusha",
+                  "y": 2.1,
+                  "barHeightOffset": -4
+                }
+              ],
+              "group": "has_lab",
+              "track": [
+                1,
+                2
+              ]
             }
           ],
           "colors": [
             "#2f9e5b",
             "#7f8a96",
-            "#3b7ddd"
+            "#3b7ddd",
+            "#e3e7ec",
+            "#e3e7ec"
           ],
           "stroke": {
-            "width": [
-              0,
-              0,
-              0
-            ],
-            "curve": "straight"
+            "width": 0
           },
           "markers": {
             "size": 0,
@@ -2014,7 +2566,9 @@
               "colors": [
                 "#374151",
                 "#ffffff",
-                "#ffffff"
+                "#ffffff",
+                "#374151",
+                "#374151"
               ]
             },
             "background": {
@@ -2023,6 +2577,10 @@
             "dropShadow": {
               "enabled": false
             },
+            "enabledOnSeries": [
+              1,
+              2
+            ],
             "offsetX": 0,
             "textAnchor": "middle"
           },
@@ -2030,20 +2588,15 @@
             "bar": {
               "horizontal": true,
               "borderRadius": 3,
-              "barHeight": "55%",
+              "barHeight": "72%",
               "columnWidth": "55%",
               "dataLabels": {
                 "position": "center",
                 "hideOverflowingLabels": false
               },
-              "colors": {
-                "backgroundBarColors": [
-                  "#e3e7ec"
-                ],
-                "backgroundBarOpacity": 1,
-                "backgroundBarRadius": 3
-              },
-              "borderRadiusApplication": "end"
+              "borderRadiusApplication": "around",
+              "borderRadiusWhenStacked": "all",
+              "colors": {}
             }
           },
           "yaxis": {
@@ -2061,7 +2614,7 @@
               "Arusha"
             ],
             "min": 0,
-            "max": 6.25,
+            "max": 6,
             "labels": {
               "show": false
             },
@@ -2256,7 +2809,7 @@
             "hover": {
               "filter": {
                 "type": "darken",
-                "value": 0.9
+                "value": 0.08
               }
             },
             "active": {
@@ -2526,7 +3079,7 @@
             "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
             "foreColor": "#374151",
             "background": "#f4f6f8",
-            "stacked": false
+            "stacked": true
           },
           "title": {
             "text": "bar(inventory.cpus, tablets) against School name",
@@ -2545,11 +3098,19 @@
             "markers": {
               "shape": "square",
               "size": 5,
-              "strokeWidth": 0
+              "strokeWidth": 0,
+              "fillColors": [
+                "#2f9e5b",
+                "#7f8a96"
+              ]
             },
             "itemMargin": {
               "horizontal": 10
-            }
+            },
+            "customLegendItems": [
+              "sum(inventory.cpus)",
+              "sum(tablets)"
+            ]
           },
           "grid": {
             "show": false,
@@ -2562,14 +3123,17 @@
           },
           "tooltip": {
             "theme": "light",
-            "shared": true,
-            "intersect": false
+            "shared": false,
+            "intersect": true,
+            "enabledOnSeries": [
+              0,
+              1
+            ]
           },
           "states": {
             "hover": {
               "filter": {
-                "type": "darken",
-                "value": 0.9
+                "type": "none"
               }
             },
             "active": {
@@ -2582,46 +3146,262 @@
             {
               "name": "sum(inventory.cpus)",
               "data": [
-                80,
-                40,
-                0,
-                8,
-                12,
-                12,
-                8,
-                8,
-                12,
-                20,
-                0
-              ]
+                {
+                  "x": "Kikuyu Primary",
+                  "y": 80,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Mlimwa Secondary",
+                  "y": 40,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Chamwino Primary",
+                  "y": 0,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Msalato Girls",
+                  "y": 8,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Kinondoni Primary",
+                  "y": 12,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Temeke Secondary",
+                  "y": 12,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Ilala Girls",
+                  "y": 8,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Ubungo Primary",
+                  "y": 8,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Meru Primary",
+                  "y": 12,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Arusha Day",
+                  "y": 20,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Monduli Secondary",
+                  "y": 0,
+                  "barHeightOffset": -4
+                }
+              ],
+              "group": "s1"
             },
             {
               "name": "sum(tablets)",
               "data": [
-                50,
-                0,
-                0,
-                40,
-                0,
-                0,
-                0,
-                25,
-                40,
-                25,
+                {
+                  "x": "Kikuyu Primary",
+                  "y": 50,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Mlimwa Secondary",
+                  "y": 0,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Chamwino Primary",
+                  "y": 0,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Msalato Girls",
+                  "y": 40,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Kinondoni Primary",
+                  "y": 0,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Temeke Secondary",
+                  "y": 0,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Ilala Girls",
+                  "y": 0,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Ubungo Primary",
+                  "y": 25,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Meru Primary",
+                  "y": 40,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Arusha Day",
+                  "y": 25,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Monduli Secondary",
+                  "y": 0,
+                  "barHeightOffset": -4
+                }
+              ],
+              "group": "s2"
+            },
+            {
+              "name": "",
+              "data": [
+                {
+                  "x": "Kikuyu Primary",
+                  "y": 1.6,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Mlimwa Secondary",
+                  "y": 41.6,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Chamwino Primary",
+                  "y": 81.6,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Msalato Girls",
+                  "y": 73.6,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Kinondoni Primary",
+                  "y": 69.6,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Temeke Secondary",
+                  "y": 69.6,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Ilala Girls",
+                  "y": 73.6,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Ubungo Primary",
+                  "y": 73.6,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Meru Primary",
+                  "y": 69.6,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Arusha Day",
+                  "y": 61.6,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Monduli Secondary",
+                  "y": 81.6,
+                  "barHeightOffset": -4
+                }
+              ],
+              "group": "s1",
+              "track": [
                 0
+              ]
+            },
+            {
+              "name": "",
+              "data": [
+                {
+                  "x": "Kikuyu Primary",
+                  "y": 31.6,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Mlimwa Secondary",
+                  "y": 81.6,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Chamwino Primary",
+                  "y": 81.6,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Msalato Girls",
+                  "y": 41.6,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Kinondoni Primary",
+                  "y": 81.6,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Temeke Secondary",
+                  "y": 81.6,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Ilala Girls",
+                  "y": 81.6,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Ubungo Primary",
+                  "y": 56.6,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Meru Primary",
+                  "y": 41.6,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Arusha Day",
+                  "y": 56.6,
+                  "barHeightOffset": -4
+                },
+                {
+                  "x": "Monduli Secondary",
+                  "y": 81.6,
+                  "barHeightOffset": -4
+                }
+              ],
+              "group": "s2",
+              "track": [
+                1
               ]
             }
           ],
           "colors": [
             "#2f9e5b",
-            "#7f8a96"
+            "#7f8a96",
+            "#e3e7ec",
+            "#e3e7ec"
           ],
           "stroke": {
-            "width": [
-              0,
-              0
-            ],
-            "curve": "straight"
+            "width": 0
           },
           "markers": {
             "size": 0,
@@ -2634,6 +3414,8 @@
               "fontWeight": 500,
               "colors": [
                 "#374151",
+                "#374151",
+                "#374151",
                 "#374151"
               ]
             },
@@ -2643,27 +3425,26 @@
             "dropShadow": {
               "enabled": false
             },
-            "offsetX": 6,
+            "enabledOnSeries": [
+              0,
+              1
+            ],
+            "offsetX": 4,
             "textAnchor": "start"
           },
           "plotOptions": {
             "bar": {
               "horizontal": true,
               "borderRadius": 3,
-              "barHeight": "55%",
+              "barHeight": "72%",
               "columnWidth": "55%",
               "dataLabels": {
                 "position": "top",
                 "hideOverflowingLabels": false
               },
-              "colors": {
-                "backgroundBarColors": [
-                  "#e3e7ec"
-                ],
-                "backgroundBarOpacity": 1,
-                "backgroundBarRadius": 3
-              },
-              "borderRadiusApplication": "end"
+              "borderRadiusApplication": "around",
+              "borderRadiusWhenStacked": "all",
+              "colors": {}
             }
           },
           "yaxis": {
@@ -2689,7 +3470,7 @@
               "Monduli Secondary"
             ],
             "min": 0,
-            "max": 100,
+            "max": 96,
             "labels": {
               "show": false
             },

@@ -38,9 +38,11 @@ describe("series charts", () => {
     expect(rating).toMatchObject({ label: "avg(it_rating)", values: [3.4, 3.75, 2.6667] });
     expect(yes).toMatchObject({ label: "has_lab: Yes", values: [4, 3, 2] });
     expect(no).toMatchObject({ label: "has_lab: No", values: [1, 1, 1] });
-    // only the choice counts stack with each other; the other series stand beside them
-    const apexSeries = (v.spec.apex as { series: { group?: string }[] }).series;
-    expect(apexSeries.map((d) => d.group)).toEqual(["s1", "s2", "has_lab", "has_lab"]);
+    // only the choice counts stack with each other; the other series stand beside them, and a
+    // grey track series follows for every group (the row's background)
+    const apexSeries = (v.spec.apex as { series: { group?: string; track?: number[] }[] }).series;
+    expect(apexSeries.slice(0, 4).map((d) => d.group)).toEqual(["s1", "s2", "has_lab", "has_lab"]);
+    expect(apexSeries.slice(4).map((d) => d.track)).toEqual([[0], [1], [2, 3]]);
     // the repeated school is summed too
     const s = chart("draw bar(monitors) against school_name");
     expect(s.spec.data.series[0].label).toBe("sum(monitors)");
@@ -58,7 +60,7 @@ describe("series charts", () => {
   it("takes any number of series in one call", () => {
     const v = chart("draw bar(monitors, printers, cpus, routers) against school_name", uniqueSchools);
     expect(v.spec.data.series.map((s) => s.label)).toEqual(["monitors", "printers", "cpus", "routers"]);
-    expect(new Set((v.spec.apex as { colors: string[] }).colors).size).toBe(4);
+    expect(new Set((v.spec.apex as { colors: string[] }).colors.slice(0, 4)).size).toBe(4);
   });
 
   it("combines chart types with 'with', forces vertical bars and adds a right axis", () => {
@@ -140,9 +142,10 @@ describe("series charts", () => {
     expect(apex.plotOptions.bar.horizontal).toBe(false);
     // stacked choice counts share a group; a horizontal bar chart stays horizontal
     const stacked = chart("draw bar(has_lab, monitors) against region");
-    const sApex = stacked.spec.apex as { chart: { stacked: boolean }; series: { group?: string }[]; plotOptions: { bar: { horizontal: boolean } } };
+    const sApex = stacked.spec.apex as { chart: { stacked: boolean }; series: { group?: string; track?: number[] }[]; plotOptions: { bar: { horizontal: boolean } } };
     expect(sApex.chart.stacked).toBe(true);
-    expect(sApex.series.map((s) => s.group)).toEqual(["has_lab", "has_lab", "s3"]);
+    expect(sApex.series.slice(0, 3).map((s) => s.group)).toEqual(["has_lab", "has_lab", "s3"]);
+    expect(sApex.series.slice(3).map((s) => s.track)).toEqual([[0, 1], [2]]);
     expect(sApex.plotOptions.bar.horizontal).toBe(true);
     const pie = chart("draw pie(sum(students)) against region");
     expect(pie.spec.apex).toMatchObject({ chart: { type: "pie" }, labels: ["Dodoma", "Dar es Salaam", "Arusha"] });
@@ -155,11 +158,14 @@ describe("series charts", () => {
     expect(shared.spec.layout.scales).toBe("shared");
     const h = chart("draw bar(avg(it_rating), sum(students)) against region");
     expect(h.spec.layout.scales).toBe("independent");
-    // horizontal: lengths are percentages of each series' maximum, the real numbers stay in data
-    const hApex = h.spec.apex as { series: { data: number[] }[]; xaxis: { max: number }; dataLabels: { enabled: boolean } };
-    expect(hApex.series[0].data).toEqual([90.67, 100, 71.11]);
-    expect(hApex.series[1].data).toEqual([85.98, 100, 45.96]);
-    expect(hApex.xaxis.max).toBe(125);
+    // horizontal: lengths are percentages of each series' maximum, the real numbers stay in data;
+    // several bars per row are shrunk a little so whitespace separates them
+    type Point = { x: string; y: number; barHeightOffset: number };
+    const hApex = h.spec.apex as { series: { data: Point[] }[]; xaxis: { max: number }; dataLabels: { enabled: boolean } };
+    expect(hApex.series[0].data.map((d) => d.y)).toEqual([90.67, 100, 71.11]);
+    expect(hApex.series[1].data.map((d) => d.y)).toEqual([85.98, 100, 45.96]);
+    expect(hApex.series[0].data[0]).toEqual({ x: "Dodoma", y: 90.67, barHeightOffset: -4 });
+    expect(hApex.xaxis.max).toBe(120);
     expect(hApex.dataLabels.enabled).toBe(true);
     expect(h.spec.data.series[0].values).toEqual([3.4, 3.75, 2.6667]);
     // vertical: one hidden axis per series, real values plotted
@@ -173,7 +179,7 @@ describe("series charts", () => {
     // stacked choice counts are one group measured by their total; an explicit right axis switches it off
     const stacked = chart("draw bar(has_lab, sum(students)) against region");
     expect(stacked.spec.layout.scales).toBe("independent");
-    expect((stacked.spec.apex as { series: { data: number[] }[] }).series[0].data).toEqual([80, 60, 40]); // Yes counts 4,3,2 over stack totals 5,4,3, scaled to the tallest stack
+    expect((stacked.spec.apex as { series: { data: Point[] }[] }).series[0].data.map((d) => d.y)).toEqual([80, 60, 40]); // Yes counts 4,3,2 over stack totals 5,4,3, scaled to the tallest stack
     expect(chart("draw bar(avg(it_rating)) with line(sum(students), right) against region").spec.layout.scales).toBe("shared");
   });
 
