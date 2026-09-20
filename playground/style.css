@@ -11,7 +11,8 @@
 }
 
 * { box-sizing: border-box; }
-body { margin: 0; background: var(--bg); }
+html, body { height: 100%; }
+body { margin: 0; background: var(--bg); display: flex; flex-direction: column; }
 
 header {
   display: flex;
@@ -39,9 +40,12 @@ main {
   grid-template-columns: minmax(280px, 1fr) minmax(320px, 1.4fr);
   gap: 1rem;
   padding: 1rem 1.25rem;
-  min-height: calc(100vh - 60px);
+  flex: 1;
+  min-height: 0; /* let the panes scroll instead of the page */
 }
-@media (max-width: 800px) { main { grid-template-columns: 1fr; } }
+@media (max-width: 800px) {
+  main { grid-template-columns: 1fr; grid-template-rows: minmax(16rem, 45%) 1fr; }
+}
 
 .editor-pane, .output-pane {
   background: var(--panel);
@@ -52,6 +56,8 @@ main {
   flex-direction: column;
   gap: 0.5rem;
   min-width: 0;
+  min-height: 0;
+  overflow: auto; /* each pane scrolls on its own */
 }
 .toolbar { display: flex; gap: 0.75rem; align-items: center; }
 .engine { font-size: 0.85rem; color: var(--muted); }
@@ -69,20 +75,69 @@ button:disabled { opacity: 0.6; cursor: default; }
 #reload { background: transparent; color: var(--accent); }
 select { font: inherit; padding: 0.25rem; }
 
-#editor {
-  width: 100%;
-  min-height: 22rem;
+/* The editor: a transparent textarea over a highlighted <pre>; both share the same metrics. */
+.code-editor {
+  position: relative;
   flex: 1;
+  min-height: 22rem;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--panel);
+}
+.code-editor:focus-within { border-color: var(--accent); }
+.code-highlight, .code-input {
+  margin: 0;
+  padding: 0.6rem;
   font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
   font-size: 0.9rem;
   line-height: 1.45;
-  padding: 0.6rem;
-  border: 1px solid var(--line);
-  border-radius: 4px;
-  resize: vertical;
+  tab-size: 2;
+  white-space: pre;
+  overflow-wrap: normal;
 }
-.help summary { cursor: pointer; font-size: 0.85rem; color: var(--muted); }
-.help pre { font-size: 0.78rem; color: var(--muted); margin: 0.25rem 0 0; white-space: pre-wrap; }
+.code-highlight {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  color: var(--text);
+}
+/* the UA sheet gives <code> its own monospace font and size; keep the metrics identical to the textarea */
+.code-highlight code { font: inherit; }
+.code-input {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  outline: none;
+  resize: none;
+  background: transparent;
+  color: transparent;
+  caret-color: var(--text);
+  overflow: auto;
+}
+.code-input::selection { background: rgba(79, 107, 237, 0.25); }
+.cm-line.has-error { text-decoration: underline wavy var(--error); text-decoration-skip-ink: none; text-underline-offset: 3px; }
+
+/* One weight everywhere: bold or italic glyphs would break the overlay's alignment with the textarea. */
+.tok-comment { color: #8a919c; }
+.tok-string, .tok-path, .tok-name { color: #0f7b5f; }
+.tok-number, .tok-literal { color: #0b7285; }
+.tok-keyword { color: #7a3ec8; }
+.tok-command { color: #b08800; }
+.tok-var { color: #4f8fe6; }
+.tok-option { color: #a05a00; }
+.tok-op, .tok-pipe { color: #c2185b; }
+.tok-punct { color: var(--muted); }
+
+.diagnostics { list-style: none; margin: 0; padding: 0; font-size: 0.8rem; font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; max-height: 8rem; overflow: auto; }
+.diagnostics li { padding: 0.15rem 0.4rem; cursor: pointer; border-left: 3px solid; border-radius: 2px; }
+.diagnostics li + li { margin-top: 2px; }
+.diagnostics li:hover { background: var(--bg); }
+.diagnostics li.error { color: var(--error); border-color: var(--error); }
+.diagnostics li.warning { color: #8a5a00; border-color: #e0a100; }
 
 #output { display: flex; flex-direction: column; gap: 0.75rem; overflow-x: auto; }
 .sdsl-result { border-left: 3px solid var(--line); padding: 0.25rem 0 0.25rem 0.75rem; }

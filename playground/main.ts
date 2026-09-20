@@ -1,8 +1,9 @@
 import "survey-analytics/survey.analytics.apexcharts.css";
 import { createWebInterpreter, renderResults, type ChartEngine } from "surveyql/web";
 import type { Interpreter, RunResult } from "surveyql";
+import { mountEditor } from "./editor";
 
-const editor = document.getElementById("editor") as HTMLTextAreaElement;
+const editor = mountEditor(document.getElementById("editor") as HTMLTextAreaElement);
 const output = document.getElementById("output") as HTMLDivElement;
 const runBtn = document.getElementById("run") as HTMLButtonElement;
 const reloadBtn = document.getElementById("reload") as HTMLButtonElement;
@@ -109,6 +110,7 @@ async function load(): Promise<void> {
     return;
   }
   const ds = interp.dataset;
+  editor.setLintOptions({ commands: interp.commandList, dataset: ds, variables: sources.map((s) => s.name) });
   status.textContent = ds ? `${sources.length} source${sources.length === 1 ? "" : "s"}; default ${sources[0].name}: ${ds.rows.length} responses, ${ds.questions.length} questions` : "no data";
 }
 
@@ -130,7 +132,7 @@ addBtn.addEventListener("click", () => {
   sources.push({ name: `source${sources.length + 1}`, survey: "", data: "" });
   renderSources();
 });
-editor.addEventListener("keydown", (e) => {
+editor.textarea.addEventListener("keydown", (e) => {
   if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
     e.preventDefault();
     void run();
